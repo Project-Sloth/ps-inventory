@@ -34,7 +34,7 @@ Future updates will be coming and we will of course support all normal monitor s
 
 ## Set up the decay system
 
-If you want the decay system to work, then please read the information below, otherwise it wont work.
+If you want the decay system to work, then please read the information below, otherwise it won't work.
 
 You need to add a decay value for all items in your `qb-core/shared/items.lua` file, the variable stands for the number of days it takes to decay.
 
