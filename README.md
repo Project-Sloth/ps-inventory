@@ -15,15 +15,16 @@ Formally lj-inventory redesigned into ps-inventory by [OK1ez](https://github.com
 ### Simple guideline psd provided (found in main directory ps-inventory)
 ![ps-inventory Guideline](https://user-images.githubusercontent.com/91661118/146315681-c67f542d-e2bc-43ca-9957-7f1971b84268.png)
 ### Full Inventory
-![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/0c6c9d55-1d7f-4327-9325-1f01d0d2ccd2)
+![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/fda2588d-e468-4fd5-8bf5-2f584f059609)
 ### Options Menu
-![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/55603616-4317-414d-897b-60a6ee7a490e)
+![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/1782f97a-27e6-441b-90a1-ff150cd846e2)
 ### Hotbar Slots
-![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/9fbdab46-fa7f-4977-8fc0-b881134993f6)
+![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/c0a77f4a-f482-42f5-a5da-1f3571d14130)
 ### Inventory Glovebox
-![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/a8a450fd-cce6-43a5-9af1-60e21297b638)
+![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/432f8c79-1a9f-44d1-8062-50b596194752)
 ### Inventory Trunk
-![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/e87e6272-6aab-4fb4-bbd1-67d981c2acd6)
+![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/f9c78e49-ec51-4d55-9ac0-b7058951d31a)
+
 
 ![LJ Inventory](https://user-images.githubusercontent.com/91661118/146313051-665337bf-ed92-4ed0-bbb9-6ee9613f670d.png)
 
