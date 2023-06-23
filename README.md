@@ -8,8 +8,9 @@ Formally `lj-inventory`, is now redesigned into ps-inventory by [OK1ez](https://
 * Make sure you have the latest updated [qb-weapons](https://github.com/qbcore-framework/qb-weapons)
 * Drag source files into your resources folder
 * Rename folder from `ps-inventory-main` to `ps-inventory`
-* Replace all qb-inventory with ps-inventory. The example below uses Visual Studio Code to replace all instances. 
-![image](https://user-images.githubusercontent.com/82112471/225484545-b2c79869-e7b4-4f37-81da-829e4430f73f.png)
+* Replace all qb-inventory with ps-inventory.<br>The example below uses Visual Studio Code to replace all instances.
+
+![image](https://github.com/Z3rio/ps-inventory/assets/54480523/00fa21a5-4be2-443f-aff2-4b3202b662dc)
 
 # Previews
 ### Simple guideline psd provided (found in main directory ps-inventory)
