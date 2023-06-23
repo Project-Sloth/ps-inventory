@@ -11,6 +11,20 @@ Formally ps-inventory.
 * Replace all qb-inventory to ps-inventory. Example below using Visual Studio Code in replacing all instances. 
 ![image](https://user-images.githubusercontent.com/82112471/225484545-b2c79869-e7b4-4f37-81da-829e4430f73f.png)
 
+# Previews
+### Simple guideline psd provided (found in main directory ps-inventory)
+![ps-inventory Guideline](https://user-images.githubusercontent.com/91661118/146315681-c67f542d-e2bc-43ca-9957-7f1971b84268.png)
+### Full Inventory
+![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/0c6c9d55-1d7f-4327-9325-1f01d0d2ccd2)
+### Options Menu
+![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/55603616-4317-414d-897b-60a6ee7a490e)
+### Hotbar Slots
+![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/9fbdab46-fa7f-4977-8fc0-b881134993f6)
+### Inventory Glovebox
+![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/a8a450fd-cce6-43a5-9af1-60e21297b638)
+### Inventory Trunk
+![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/e87e6272-6aab-4fb4-bbd1-67d981c2acd6)
+
 ![LJ Inventory](https://user-images.githubusercontent.com/91661118/146313051-665337bf-ed92-4ed0-bbb9-6ee9613f670d.png)
 
 Join my Discord for updates, support, and special early testing!
@@ -68,28 +82,6 @@ In collaboration with [OnlyCats](https://github.com/onlycats) who helped reorgan
 * Blurred inventory background
 * Elements of NoPixel 3.5 design ideas interwoven
 #
-
-# Previews
-### Simple guideline psd provided (found in main directory ps-inventory)
-![ps-inventory Guideline](https://user-images.githubusercontent.com/91661118/146315681-c67f542d-e2bc-43ca-9957-7f1971b84268.png)
-### Full Inventory
-![full inventory](https://user-images.githubusercontent.com/91661118/146315750-1199a37e-88e0-4d48-86d3-ae0b85df6a72.png)
-### Options Menu
-![options menu](https://user-images.githubusercontent.com/91661118/147011228-ee6c9c0c-0058-4418-8c5f-c484f2f621f7.png)
-### Help Box
-![help box](https://user-images.githubusercontent.com/91661118/147011242-bb98e650-12c4-43d9-9a93-afa8edcecd90.png)
-### Hotbar Slots
-![hotbar slots](https://user-images.githubusercontent.com/91661118/146315788-3af800e4-af26-4e9a-85be-bd0035689b70.png)
-### Used & Removed Itembox 
-![used & removed itembox](https://user-images.githubusercontent.com/91661118/146315886-f488cc39-7e2a-4186-8ab9-4f9540ff6575.png)
-### Inventory Shops
-![inventory shops](https://user-images.githubusercontent.com/91661118/146316063-1111699b-691d-482a-8bf0-6070f1485614.png)
-### Inventory Glovebox
-![inventory glovebox](https://user-images.githubusercontent.com/91661118/146316143-5d554103-e331-4ad0-a7e1-af44f76b5f36.png)
-### Inventory Trunk
-![inventory trunk](https://user-images.githubusercontent.com/91661118/146316079-b0260b68-78c0-4266-976d-a527264491f3.png)
-
-
 # Credits
 * [OK1ez](https://github.com/OK1ez) for full redesign. 
 * ihyajb (Aj) for [original version](https://github.com/ihyajb/aj-inventory)
