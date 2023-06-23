@@ -30,6 +30,28 @@ Future updates will be coming and we will of course support all normal monitor s
 * Rename folder from `ps-inventory-main` to `ps-inventory`
 * Replace all qb-inventory with ps-inventory.<br>The example below uses Visual Studio Code to replace all instances.
 
+## Important, if you want the decay to work follow you have to follow these steps, unless you don't want stuff to decay
+
+You need to add a decay value for all items in your `qb-core/shared/items.lua` file, the variable stands for the number of days it takes to decay.
+
+### Examples:
+
+#### Example of what you have to add
+
+```lua
+-- decay = The number of days it takes for an item to decay
+-- delete = If set to true, the item will be removed once it decays
+["decay"] = 28.0, ["delete"] = true
+```
+
+#### Example with the full item in QB-Core's shared file
+
+```lua
+['sandwich'] = {['name'] = 'sandwich', ['label'] = 'Sandwich', ['weight'] = 200, ['type'] = 'item', ['image'] = 'sandwich.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true,	['combinable'] = nil, ['description'] = 'Nice bread for your stomach', ["decay"] = 3.0, ["delete"] = true},
+```
+
+In this example, the sandwich item would take 3 days to decay and once it does, it would be removed.
+
 ![image](https://github.com/Z3rio/ps-inventory/assets/54480523/00fa21a5-4be2-443f-aff2-4b3202b662dc)
 
 # Dependencies
@@ -82,27 +104,6 @@ So, the NoPixel 3.5 inventory update is a very controversial topic for most peop
 ## Performance
 
 Runs at ~ 0.00 to 0.01 ms if you have more optimization suggestions feel free to reach out
-
-# Important, if you want the decay to work follow you have to follow these steps, unless you don't want stuff to decay
-
-You need to add a decay value for all items in your `qb-core/shared/items.lua` file, the variable stands for the number of days it takes to decay.
-
-## Examples:
-
-### Example of what you have to add
-
-```lua
--- decay = The number of days it takes for an item to decay
--- delete = If set to true, the item will be removed once it decays
-["decay"] = 28.0, ["delete"] = true
-```
-
-### Example with the full item in QB-Core's shared file
-
-```lua
-['sandwich'] = {['name'] = 'sandwich', ['label'] = 'Sandwich', ['weight'] = 200, ['type'] = 'item', ['image'] = 'sandwich.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true,	['combinable'] = nil, ['description'] = 'Nice bread for your stomach', ["decay"] = 3.0, ["delete"] = true},
-```
-In this example, the sandwich item would take 3 days to decay and once it does, it would be removed.
 
 ## Supporters
 
