@@ -22,17 +22,19 @@ Future updates will be coming and we will of course support all normal monitor s
 
 # How to install ps-inventory (Latest QBCore Update)
 
-* Download source files from GitHub
-* Make sure you have the latest updated [qb-core](https://github.com/qbcore-framework/qb-core)
-* Make sure you have the latest updated [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources)
-* Make sure you have the latest updated [qb-weapons](https://github.com/qbcore-framework/qb-weapons)
-* Drag source files into your resources folder
-* Rename folder from `ps-inventory-main` to `ps-inventory`
-* Replace all qb-inventory with ps-inventory.<br>The example below uses Visual Studio Code to replace all instances.
+* Download `ps-inventory` from our GitHub
+* Make sure you have the latest update of [qb-core](https://github.com/qbcore-framework/qb-core)
+* Make sure you have the latest update of [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources)
+* Make sure you have the latest update of [qb-weapons](https://github.com/qbcore-framework/qb-weapons)
+* Drag `ps-inventory` into your resources folder or any subfolder
+* Make sure that the folder is named `ps-inventory` and **not** `ps-inventory-main`
+* Replace all occurrences of `qb-inventory` with `ps-inventory`.<br>The example below uses Visual Studio Code to replace all instances.
 
 ![image](https://github.com/Z3rio/ps-inventory/assets/54480523/00fa21a5-4be2-443f-aff2-4b3202b662dc)
 
-## Important, if you want the decay to work follow you have to follow these steps, unless you don't want stuff to decay
+## Set up the decay system
+
+If you want the decay system to work, then please read the information below, otherwise it wont work.
 
 You need to add a decay value for all items in your `qb-core/shared/items.lua` file, the variable stands for the number of days it takes to decay.
 
