@@ -1,5 +1,5 @@
 # ps-inventory
-Formally ps-inventory. 
+Formally lj-inventory redesigned into ps-inventory by [OK1ez](https://github.com/OK1ez) for full redesign. We will add improvements and support normal monitor sizes. 
 
 # How to install ps-inventory (Latest QBCore Update)
 * Download source files from github
