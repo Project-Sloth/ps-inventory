@@ -46,10 +46,9 @@ You need to add a decay value for all items in your `qb-core/shared/items.lua` f
 ### Example of what you have to add
 
 ```lua
--- created = This gets filled automatically, don't touch it
 -- decay = The number of days it takes for an item to decay
 -- delete = If set to true, the item will be removed once it decays
-["created"] = nil, ["decay"] = 28.0, ["delete"] = true
+["decay"] = 28.0, ["delete"] = true
 ```
 
 <br>
@@ -57,7 +56,7 @@ You need to add a decay value for all items in your `qb-core/shared/items.lua` f
 ### Example with the full item in QB-Core's shared file
 
 ```lua
-['sandwich'] = {['name'] = 'sandwich', ['label'] = 'Sandwich', ['weight'] = 200, ['type'] = 'item', ['image'] = 'sandwich.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true,	['combinable'] = nil, ['description'] = 'Nice bread for your stomach', ["created"] = nil, ["decay"] = 3.0, ["delete"] = true},
+['sandwich'] = {['name'] = 'sandwich', ['label'] = 'Sandwich', ['weight'] = 200, ['type'] = 'item', ['image'] = 'sandwich.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true,	['combinable'] = nil, ['description'] = 'Nice bread for your stomach', ["decay"] = 3.0, ["delete"] = true},
 ```
 In this example, the sandwich item would take 3 days to decay and once it does, it would be removed.
 <br>
