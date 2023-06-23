@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 description 'ps-inventory'
-version '1.1'
+version '1.0.0'
 
 shared_scripts {
 	'config.lua',
@@ -31,6 +31,5 @@ files {
 	'html/attachment_images/*.png',
 	'html/*.ttf'
 }
-
 
 lua54 'yes'
