@@ -1,6 +1,17 @@
-![LJ Inventory](https://user-images.githubusercontent.com/91661118/146313051-665337bf-ed92-4ed0-bbb9-6ee9613f670d.png)
+# ps-inventory
+Formally lj-inventory. 
 
-## Color Picking Added!
+# How to install ps-inventory (Latest QBCore Update)
+* Download source files from github
+* Make sure you have latest updated [qb-core](https://github.com/qbcore-framework/qb-core)
+* Make sure you have latest updated [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources)
+* Make sure you have latest updated [qb-weapons](https://github.com/qbcore-framework/qb-weapons)
+* Drag source files into your resources folder
+* Rename folder from `ps-inventory-main` to `ps-inventory`
+* Replace all qb-inventory to ps-inventory. Example below using Visual Studio Code in replacing all instances. 
+![image](https://user-images.githubusercontent.com/82112471/225484545-b2c79869-e7b4-4f37-81da-829e4430f73f.png)
+
+![LJ Inventory](https://user-images.githubusercontent.com/91661118/146313051-665337bf-ed92-4ed0-bbb9-6ee9613f670d.png)
 
 Join my Discord for updates, support, and special early testing!
 <br>
@@ -41,18 +52,7 @@ In collaboration with [OnlyCats](https://github.com/onlycats) who helped reorgan
 * [qb-radio](https://github.com/qbcore-framework/qb-radio)
 * [qb-drugs](https://github.com/qbcore-framework/qb-drugs)
 * [qb-shops](https://github.com/qbcore-framework/qb-shops)
-
-# How to install lj-inventory (Latest QBCore Update)
-* Download source files from github
-* Make sure you have latest updated [qb-core](https://github.com/qbcore-framework/qb-core)
-* Make sure you have latest updated [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources)
-* Make sure you have latest updated [qb-weapons](https://github.com/qbcore-framework/qb-weapons)
-* Drag source files into your resources folder
-* Rename folder from `lj-inventory-main` to `lj-inventory`
-* Replace all qb-inventory to lj-inventory. Example below using Visual Studio Code in replacing all instances. 
-![image](https://user-images.githubusercontent.com/82112471/225484545-b2c79869-e7b4-4f37-81da-829e4430f73f.png)
  
-
 # Key Features
 * ALL IMAGES FOLLOW THE SAME DIMENSIONS
 * Easy Photoshop guideline template for creating custom images within lj-inventory
@@ -91,10 +91,10 @@ In collaboration with [OnlyCats](https://github.com/onlycats) who helped reorgan
 
 
 # Credits
+* [OK1ez](https://github.com/OK1ez) for full redesign. 
 * ihyajb (Aj) for [original version](https://github.com/ihyajb/aj-inventory)
 * Jay for [decay](https://github.com/tnj-development/inventory)
 * i-kulgu for [updated decay](https://github.com/i-kulgu/qb-inventory-decay)
-
 
 # Issues and Suggestions
 Please use the GitHub issues system to report issues or make suggestions, when making suggestion, please keep [Suggestion] in the title to make it clear that it is a suggestion.
