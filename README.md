@@ -1,5 +1,5 @@
 # ps-inventory
-Formally lj-inventory. 
+Formally ps-inventory. 
 
 # How to install ps-inventory (Latest QBCore Update)
 * Download source files from github
@@ -55,7 +55,7 @@ In collaboration with [OnlyCats](https://github.com/onlycats) who helped reorgan
  
 # Key Features
 * ALL IMAGES FOLLOW THE SAME DIMENSIONS
-* Easy Photoshop guideline template for creating custom images within lj-inventory
+* Easy Photoshop guideline template for creating custom images within ps-inventory
 * Custom brand logo above option buttons
 * Options menu
 * Help box 
@@ -70,8 +70,8 @@ In collaboration with [OnlyCats](https://github.com/onlycats) who helped reorgan
 #
 
 # Previews
-### Simple guideline psd provided (found in main directory lj-inventory)
-![lj-inventory Guideline](https://user-images.githubusercontent.com/91661118/146315681-c67f542d-e2bc-43ca-9957-7f1971b84268.png)
+### Simple guideline psd provided (found in main directory ps-inventory)
+![ps-inventory Guideline](https://user-images.githubusercontent.com/91661118/146315681-c67f542d-e2bc-43ca-9957-7f1971b84268.png)
 ### Full Inventory
 ![full inventory](https://user-images.githubusercontent.com/91661118/146315750-1199a37e-88e0-4d48-86d3-ae0b85df6a72.png)
 ### Options Menu

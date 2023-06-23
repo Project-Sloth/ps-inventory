@@ -50,9 +50,9 @@ exports("HasItem", HasItem)
 
 RegisterNUICallback('showBlur', function()
     Wait(50)
-    TriggerEvent("lj-inventory:client:showBlur")
+    TriggerEvent("ps-inventory:client:showBlur")
 end) 
-RegisterNetEvent("lj-inventory:client:showBlur", function()
+RegisterNetEvent("ps-inventory:client:showBlur", function()
     Wait(50)
     showBlur = not showBlur
 end)

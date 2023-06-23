@@ -1904,7 +1904,7 @@ RegisterNetEvent('inventory:server:SetInventoryData', function(fromInventory, to
                     itemData.info.quality = 100
                 end
                 local serial = itemData.info.serie
-                local imageurl = ("https://cfx-nui-lj-inventory/html/images/%s.png"):format(itemData.name)
+                local imageurl = ("https://cfx-nui-ps-inventory/html/images/%s.png"):format(itemData.name)
                 local notes = "Purchased at Ammunation"
                 local owner = Player.PlayerData.charinfo.firstname .. " " .. Player.PlayerData.charinfo.lastname
                 local weapClass = 1
@@ -1921,7 +1921,7 @@ RegisterNetEvent('inventory:server:SetInventoryData', function(fromInventory, to
                     itemData.info.quality = 100
                 end
                 local serial = itemData.info.serie
-                local imageurl = ("https://cfx-nui-lj-inventory/html/images/%s.png"):format(itemData.name)
+                local imageurl = ("https://cfx-nui-ps-inventory/html/images/%s.png"):format(itemData.name)
                 local notes = "Purchased at Ammunation"
                 local owner = Player.PlayerData.charinfo.firstname .. " " .. Player.PlayerData.charinfo.lastname
                 local weapClass = 1
