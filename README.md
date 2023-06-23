@@ -4,6 +4,22 @@ LJ-Inventory has been fully redesigned by [OK1ez](https://github.com/OK1ez), und
 
 Future updates will be coming and we will of course support all normal monitor sizes.
 
+# Key Features
+
+* ALL IMAGES FOLLOW THE SAME DIMENSIONS
+* Easy Photoshop guideline template for creating custom images within ps-inventory
+* Custom brand logo above option buttons
+* Options menu
+* Help box 
+* Custom inventory images (more always being added in each new update)
+* Default weight icon easily changeable with Font Awesome icons
+* Hotkey numbers visible in inventory and hotbar slots
+* Weight progress bar
+* Tooltip has a determined height (so it won't ever go higher than visible or cut off)
+* Text overflow ellipsis used (so your product titles with never overlap the containers and instead do "...")
+* Blurred inventory background
+* Elements of NoPixel 3.5 design ideas interwoven
+
 # How to install ps-inventory (Latest QBCore Update)
 
 * Download source files from GitHub
@@ -15,6 +31,17 @@ Future updates will be coming and we will of course support all normal monitor s
 * Replace all qb-inventory with ps-inventory.<br>The example below uses Visual Studio Code to replace all instances.
 
 ![image](https://github.com/Z3rio/ps-inventory/assets/54480523/00fa21a5-4be2-443f-aff2-4b3202b662dc)
+
+# Dependencies
+
+* [qbcore framework](https://github.com/qbcore-framework)
+* [qb-target](https://github.com/BerkieBb/qb-target)
+* [qb-core](https://github.com/qbcore-framework/qb-core)
+* [qb-logs](https://github.com/qbcore-framework/qb-logs)
+* [qb-traphouse](https://github.com/qbcore-framework/qb-traphouse)
+* [qb-radio](https://github.com/qbcore-framework/qb-radio)
+* [qb-drugs](https://github.com/qbcore-framework/qb-drugs)
+* [qb-shops](https://github.com/qbcore-framework/qb-shops)
 
 # Previews
 
@@ -80,33 +107,6 @@ In this example, the sandwich item would take 3 days to decay and once it does, 
 ## Supporters
 
 In collaboration with [OnlyCats](https://github.com/onlycats) who helped reorganize and also created some custom images.
-
-# Dependencies
-
-* [qbcore framework](https://github.com/qbcore-framework)
-* [qb-target](https://github.com/BerkieBb/qb-target)
-* [qb-core](https://github.com/qbcore-framework/qb-core)
-* [qb-logs](https://github.com/qbcore-framework/qb-logs)
-* [qb-traphouse](https://github.com/qbcore-framework/qb-traphouse)
-* [qb-radio](https://github.com/qbcore-framework/qb-radio)
-* [qb-drugs](https://github.com/qbcore-framework/qb-drugs)
-* [qb-shops](https://github.com/qbcore-framework/qb-shops)
- 
-# Key Features
-
-* ALL IMAGES FOLLOW THE SAME DIMENSIONS
-* Easy Photoshop guideline template for creating custom images within ps-inventory
-* Custom brand logo above option buttons
-* Options menu
-* Help box 
-* Custom inventory images (more always being added in each new update)
-* Default weight icon easily changeable with Font Awesome icons
-* Hotkey numbers visible in inventory and hotbar slots
-* Weight progress bar
-* Tooltip has a determined height (so it won't ever go higher than visible or cut off)
-* Text overflow ellipsis used (so your product titles with never overlap the containers and instead do "...")
-* Blurred inventory background
-* Elements of NoPixel 3.5 design ideas interwoven
 
 # Credits
 
