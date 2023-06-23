@@ -1,14 +1,14 @@
 # ps-inventory
-Formally lj-inventory redesigned into ps-inventory by [OK1ez](https://github.com/OK1ez) for full redesign. We will add improvements and support normal monitor sizes. 
+Formally `lj-inventory`, is now redesigned into ps-inventory by [OK1ez](https://github.com/OK1ez) for full redesign. We will add improvements and support normal monitor sizes. 
 
 # How to install ps-inventory (Latest QBCore Update)
-* Download source files from github
-* Make sure you have latest updated [qb-core](https://github.com/qbcore-framework/qb-core)
-* Make sure you have latest updated [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources)
-* Make sure you have latest updated [qb-weapons](https://github.com/qbcore-framework/qb-weapons)
+* Download source files from GitHub
+* Make sure you have the latest updated [qb-core](https://github.com/qbcore-framework/qb-core)
+* Make sure you have the latest updated [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources)
+* Make sure you have the latest updated [qb-weapons](https://github.com/qbcore-framework/qb-weapons)
 * Drag source files into your resources folder
 * Rename folder from `ps-inventory-main` to `ps-inventory`
-* Replace all qb-inventory to ps-inventory. Example below using Visual Studio Code in replacing all instances. 
+* Replace all qb-inventory with ps-inventory. The example below uses Visual Studio Code to replace all instances. 
 ![image](https://user-images.githubusercontent.com/82112471/225484545-b2c79869-e7b4-4f37-81da-829e4430f73f.png)
 
 # Previews
@@ -32,32 +32,37 @@ Join my Discord for updates, support, and special early testing!
 <br>
 https://discord.gg/projectsloth
 
-So, I know the NoPixel 3.5 inventory update is a very controversial topic for most people. I wasn't a huge fan of it myself at first, but I liked the overall idea and concept behind it. So, here's my own take and spin on the design. This is was made off the awesome inventory [ihyajb](https://github.com/ihyajb) made
+So, the NoPixel 3.5 inventory update is a very controversial topic for most people. I wasn't a huge fan of it myself at first, but I liked the overall idea and concept behind it. So, here's my own take and spin on the design. This is was made off the awesome inventory [ihyajb](https://github.com/ihyajb) made
 <br>
 
 Runs at ~ 0.00 to 0.01 ms if you have more optimization suggestions feel free to reach out
 
-# Important, If you want the decay to work follow this steps, this is not needed if you dont want to use decay
-you need to add a decay and created value in your qb-core/shared/items for all items, the decay is set to be the days the item lasts
+# Important, if you want the decay to work follow you have to follow these steps, unless you don't want stuff to decay
+You need to add a decay value for all items in your `qb-core/shared/items.lua` file, the variable stands for the number of days it takes to decay.
 <br>
 
+## Examples:
+
+### Example of what you have to add
+
 ```lua
--- created = this will get filled in with the time when it's created, just leave this
--- decay = amount of days that an item will decay
--- delete = choice whether to remove the item when it's decayed or not
+-- created = This gets filled automatically, don't touch it
+-- decay = The number of days it takes for an item to decay
+-- delete = If set to true, the item will be removed once it decays
 ["created"] = nil, ["decay"] = 28.0, ["delete"] = true
 ```
+
 <br>
-Example:
-<br>
+
+### Example with the full item in QB-Core's shared file
 
 ```lua
 ['sandwich'] = {['name'] = 'sandwich', ['label'] = 'Sandwich', ['weight'] = 200, ['type'] = 'item', ['image'] = 'sandwich.png', ['unique'] = false, ['useable'] = true, ['shouldClose'] = true,	['combinable'] = nil, ['description'] = 'Nice bread for your stomach', ["created"] = nil, ["decay"] = 3.0, ["delete"] = true},
 ```
-In this example our sandwich will decay in 3 days and removed when used.
+In this example, the sandwich item would take 3 days to decay and once it does, it would be removed.
 <br>
 
-In collaboration with [OnlyCats](https://github.com/onlycats) who helped reorganized and also created some custom images.
+In collaboration with [OnlyCats](https://github.com/onlycats) who helped reorganize and also created some custom images.
 # Dependencies
 * [qbcore framework](https://github.com/qbcore-framework)
 * [qb-target](https://github.com/BerkieBb/qb-target)
@@ -90,4 +95,4 @@ In collaboration with [OnlyCats](https://github.com/onlycats) who helped reorgan
 * i-kulgu for [updated decay](https://github.com/i-kulgu/qb-inventory-decay)
 
 # Issues and Suggestions
-Please use the GitHub issues system to report issues or make suggestions, when making suggestion, please keep [Suggestion] in the title to make it clear that it is a suggestion.
+Please use the GitHub issues system to report issues or make suggestions, when making suggestions, please keep [Suggestion] in the title to make it clear that it is a suggestion.
