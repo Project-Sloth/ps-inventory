@@ -30,9 +30,6 @@ Future updates will be coming and we will of course support all normal monitor s
 
 ![image](https://github.com/Project-Sloth/ps-inventory/assets/82112471/f9c78e49-ec51-4d55-9ac0-b7058951d31a)
 
-![LJ Inventory](https://user-images.githubusercontent.com/91661118/146313051-665337bf-ed92-4ed0-bbb9-6ee9613f670d.png)
-
-
 # Key Features
 
 * ALL IMAGES FOLLOW THE SAME DIMENSIONS
@@ -96,21 +93,9 @@ In this example, the sandwich item would take 3 days to decay and once it does, 
 * [qb-drugs](https://github.com/qbcore-framework/qb-drugs)
 * [qb-shops](https://github.com/qbcore-framework/qb-shops)
 
-## Connect with us
-
-Join our [**Discord**](https://discord.gg/projectsloth) for updates, support, and special early testing!
-
-## Addressing the controversy
-
-So, the NoPixel 3.5 inventory update is a very controversial topic for most people. I wasn't a huge fan of it myself at first, but I liked the overall idea and concept behind it. So, here's my own take and spin on the design. This is was made off the awesome inventory [ihyajb](https://github.com/ihyajb) made
-
 ## Performance
 
 Runs at ~ 0.00 to 0.01 ms if you have more optimization suggestions feel free to reach out
-
-## Supporters
-
-In collaboration with [OnlyCats](https://github.com/onlycats) who helped reorganize and also created some custom images.
 
 # Credits
 
@@ -118,7 +103,12 @@ In collaboration with [OnlyCats](https://github.com/onlycats) who helped reorgan
 * ihyajb (Aj) for [original version](https://github.com/ihyajb/aj-inventory)
 * Jay for [decay](https://github.com/tnj-development/inventory)
 * i-kulgu for [updated decay](https://github.com/i-kulgu/qb-inventory-decay)
+* [OnlyCats](https://github.com/onlycats) who helped reorganize and also created some custom images.
 
 # Issues and Suggestions
 
 Please use the GitHub issues system to report issues or make suggestions, when making suggestions, please keep [Suggestion] in the title to make it clear that it is a suggestion.
+
+## Connect with us
+
+Join our [**Discord**](https://discord.gg/projectsloth) for updates, support, and special early testing!
