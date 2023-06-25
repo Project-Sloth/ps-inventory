@@ -14,6 +14,21 @@ local isCrafting = false
 local isHotbar = false
 local WeaponAttachments = {}
 local showBlur = true
+local driver = nil
+local isDriver = false
+
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+    Wait(5000)
+    --checkDriver()
+end)
+
+  -- Handles state if resource is restarted live.
+AddEventHandler('onResourceStart', function(resource)
+    if (GetCurrentResourceName() ~= resource) then
+        return
+    end
+    --checkDriver()
+end)
 
 local function HasItem(items, amount)
     local isTable = type(items) == 'table'
@@ -179,7 +194,7 @@ local function openAnim()
     local ped = PlayerPedId()
     LoadAnimDict('pickup_object')
     TaskPlayAnim(ped,'pickup_object', 'putdown_low', 5.0, 1.5, 1.0, 48, 0.0, 0, 0, 0)
-    Wait(500)
+    Wait(100)
     StopAnimTask(ped, 'pickup_object', 'putdown_low', 1.0)
 end
 
@@ -405,12 +420,12 @@ RegisterNetEvent('inventory:client:requiredItems', function(items, bool)
     })
 end)
 
-RegisterNetEvent('inventory:server:RobPlayer', function(TargetId)
+--[[RegisterNetEvent('inventory:server:RobPlayer', function(TargetId)
     SendNUIMessage({
         action = "RobMoney",
         TargetId = TargetId,
     })
-end)
+end)]]
 
 RegisterNetEvent('inventory:client:OpenInventory', function(PlayerAmmo, inventory, other)
     if not IsEntityDead(PlayerPedId()) then
@@ -447,7 +462,7 @@ RegisterNetEvent('inventory:client:OpenInventory', function(PlayerAmmo, inventor
 
         end)
         else
-            Wait(500)
+            Wait(100)
             ToggleHotbar(false)
             if showBlur == true then
                 TriggerScreenblurFadeIn(1000)
@@ -493,6 +508,10 @@ RegisterNetEvent('inventory:client:UpdatePlayerInventory', function(isError)
         slots = Config.MaxInventorySlots,
         error = isError,
     })
+    Wait(500)
+    TriggerEvent('cortex_backitems:DeleteAttachedBackItems') --cortex_backitems
+    Wait(500)
+    TriggerEvent('cortex_backitems:AttachBackItems')
 end)
 
 RegisterNetEvent('inventory:client:CraftItems', function(itemName, itemCosts, amount, toSlot, points)
@@ -605,6 +624,7 @@ RegisterNetEvent('inventory:client:UseWeapon', function(weaponData, shootbool)
         TriggerEvent('weapons:client:DrawWeapon', weaponName)
         TriggerEvent('weapons:client:SetCurrentWeapon', weaponData, shootbool)
         local ammo = tonumber(weaponData.info.ammo) or 0
+        local tint = tonumber(weaponData.info.tint) or 0 --Tint
 
         if weaponName == "weapon_fireextinguisher" then
             ammo = 4000
@@ -613,6 +633,7 @@ RegisterNetEvent('inventory:client:UseWeapon', function(weaponData, shootbool)
         GiveWeaponToPed(ped, weaponHash, ammo, false, false)
         SetPedAmmo(ped, weaponHash, ammo)
         SetCurrentPedWeapon(ped, weaponHash, true)
+        SetPedWeaponTintIndex(ped, weaponHash, tint) --Tint
 
         if weaponData.info.attachments then
             for _, attachment in pairs(weaponData.info.attachments) do
@@ -821,7 +842,7 @@ RegisterKeyMapping('hotbar', 'Toggles keybind slots', 'keyboard', 'z')
 
 for i = 1, 6 do
     RegisterCommand('slot' .. i,function()
-        if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not LocalPlayer.state.inv_busy then
+        if not isDriver and not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not LocalPlayer.state.inv_busy then
             if i == 6 then
                 i = Config.MaxInventorySlots
             end
@@ -914,6 +935,9 @@ RegisterNUICallback("CloseInventory", function()
         TriggerServerEvent("inventory:server:SaveInventory", "drop", CurrentDrop)
         CurrentDrop = nil
     end
+    TriggerEvent('cortex_backitems:DeleteAttachedBackItems') --cortex_backitems
+    Wait(0)
+    TriggerEvent('cortex_backitems:AttachBackItems')
     Wait(50)
     TriggerScreenblurFadeOut(1000)
     SetNuiFocus(false, false)
@@ -958,6 +982,7 @@ RegisterNUICallback('combineWithAnim', function(data, cb)
 end)
 
 RegisterNUICallback("SetInventoryData", function(data, cb)
+    TriggerEvent('cortex_backitems:RefreshAttachedItem', data) --cortex_backitems
     TriggerServerEvent("inventory:server:SetInventoryData", data.fromInventory, data.toInventory, data.fromSlot, data.toSlot, data.fromAmount, data.toAmount)
     cb('ok')
 end)
@@ -1057,7 +1082,7 @@ end)
 
 
     --qb-target
-    RegisterNetEvent("inventory:client:Crafting", function(dropId)
+    --[[RegisterNetEvent("inventory:client:Crafting", function(dropId)
         local crafting = {}
         crafting.label = "Crafting"
         crafting.items = GetThresholdItems()
@@ -1096,4 +1121,22 @@ end)
                 },
             },
         distance = 1.0
-    })
+    })]]
+
+CreateThread(function()
+    while true do
+        ped = GetPlayerPed(-1)
+        pedInVeh = IsPedInAnyVehicle(ped, false)
+        vehicle = GetVehiclePedIsIn(ped, false)
+        driver = GetPedInVehicleSeat(vehicle, -1)
+            
+        if pedInVeh and driver == ped then
+            isDriver = true
+        elseif pedInVeh and driver ~= ped then
+            isDriver = false
+        elseif not pedInVeh and isDriver then
+            isDriver = false
+        end
+        Wait(1000)
+    end
+end)
