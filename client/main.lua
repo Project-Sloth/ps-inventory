@@ -157,22 +157,70 @@ local function closeInventory()
     })
 end
 
-local function ToggleHotbar(toggle)
-    local HotbarItems = {
-        [1] = PlayerData.items[1],
-        [2] = PlayerData.items[2],
-        [3] = PlayerData.items[3],
-        [4] = PlayerData.items[4],
-        [5] = PlayerData.items[5],
-        [41] = PlayerData.items[41],
-    }
+RegisterNetEvent('inventoryHotBar')
+AddEventHandler('inventoryHotBar', function(bool)
+    ToggleHotbar(bool)
+end)
 
-    SendNUIMessage({
-        action = "toggleHotbar",
-        open = toggle,
-        items = HotbarItems
-    })
+local function GetHotbarItems(items)
+    local PlayerItems = items or QBCore.Functions.GetPlayerData().items
+
+    return {
+        [1] = PlayerItems[1],
+        [2] = PlayerItems[2],
+        [3] = PlayerItems[3],
+        [4] = PlayerItems[4],
+        [5] = PlayerItems[5],
+        [41] = PlayerItems[41],
+    }
 end
+
+local function ToggleHotbar(toggle)
+    if toggle then
+        SendNUIMessage({
+            action = "toggleHotbar",
+            open = true,
+            items = GetHotbarItems()
+        })
+    else
+        SendNUIMessage({
+            action = "toggleHotbar",
+            open = false,
+        })
+    end
+end
+
+RegisterNetEvent('QBCore:Player:SetPlayerData', function(PlayerData)
+    if isHotbar then
+        SendNUIMessage({
+            action = "toggleHotbar",
+            open = true,
+            items = GetHotbarItems(PlayerData.items)
+        })
+    end
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(1000)
+        if hotbar then
+            local HotbarItems = {
+                [1] = QBCore.Functions.GetPlayerData().items[1],
+                [2] = QBCore.Functions.GetPlayerData().items[2],
+                [3] = QBCore.Functions.GetPlayerData().items[3],
+                [4] = QBCore.Functions.GetPlayerData().items[4],
+                [5] = QBCore.Functions.GetPlayerData().items[5],
+            } 
+        
+            SendNUIMessage({
+                action = "toggleHotbar",
+                open = true,
+                items = HotbarItems
+            })
+        end
+    end
+end)
+
 
 
 local function openAnim()
