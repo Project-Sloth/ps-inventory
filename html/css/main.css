@@ -28,6 +28,7 @@ p { margin: 0 !important; }
     --color-primary: #23242e;
     --color-secondary: #383942;
     --color-accent: rgb(65, 199, 165);
+    opacity: .9;
 }
 
 .fas.fa-lock {
