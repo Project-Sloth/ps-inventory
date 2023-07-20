@@ -174,14 +174,14 @@ local function ToggleHotbar(toggle)
     })
 end
 
-
+------Animation and "LAG" Fix - jW
 local function openAnim()
     local ped = PlayerPedId()
     LoadAnimDict('pickup_object')
     TaskPlayAnim(ped,'pickup_object', 'putdown_low', 5.0, 1.5, 1.0, 48, 0.0, 0, 0, 0)
-    Wait(500)
-    StopAnimTask(ped, 'pickup_object', 'putdown_low', 1.0)
+    TriggerEvent('inventory:client:ClearOpenAnimation')
 end
+------Animation and "LAG" Fix - jW
 
 local function ItemsToItemInfo()
 	itemInfos = {
@@ -447,7 +447,7 @@ RegisterNetEvent('inventory:client:OpenInventory', function(PlayerAmmo, inventor
 
         end)
         else
-            Wait(500)
+            Wait(10)
             ToggleHotbar(false)
             if showBlur == true then
                 TriggerScreenblurFadeIn(1000)
@@ -673,6 +673,14 @@ RegisterNetEvent('inventory:client:SetCurrentStash', function(stash)
     CurrentStash = stash
 end)
 
+------Animation and "LAG" Fix - jW
+RegisterNetEvent('inventory:client:ClearOpenAnimation', function()
+    Wait(100)
+    local ped = PlayerPedId()
+    StopAnimTask(ped, 'pickup_object', 'putdown_low', 1.0)
+    ClearPedTasks(ped)
+end)
+------Animation and "LAG" Fix - jW
 
 RegisterNetEvent('inventory:client:craftTarget',function()
     local crafting = {}
@@ -687,7 +695,7 @@ RegisterCommand('closeinv', function()
     closeInventory()
 end, false)
 
-RegisterNetEvent("qb-inventory:client:closeinv", function()
+RegisterNetEvent("ps-inventory:client:closeinv", function()
     closeInventory()
 end)
 
@@ -831,7 +839,7 @@ for i = 1, 6 do
     RegisterKeyMapping('slot' .. i, 'Uses the item in slot ' .. i, 'keyboard', i)
 end
 
-RegisterNetEvent('qb-inventory:client:giveAnim', function()
+RegisterNetEvent('ps-inventory:client:giveAnim', function()
     LoadAnimDict('mp_common')
 	TaskPlayAnim(PlayerPedId(), 'mp_common', 'givetake1_b', 8.0, 1.0, -1, 16, 0, 0, 0, 0)
 end)
