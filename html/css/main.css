@@ -25,9 +25,9 @@ p { margin: 0 !important; }
 }
 
 :root {
-    --color-primary: #23242e;
-    --color-secondary: #383942;
-    --color-accent: rgb(65, 199, 165);
+    --color-primary: #101010;
+    --color-secondary: #000000;
+    --color-accent: rgb(65, 199, 70);
     opacity: .9;
 }
 
