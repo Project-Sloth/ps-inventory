@@ -28,7 +28,7 @@ p { margin: 0 !important; }
     --color-primary: #101010;
     --color-secondary: #000000;
     --color-accent: rgb(65, 199, 70);
-    opacity: .9;
+    opacity: .77;
 }
 
 .fas.fa-lock {
@@ -308,8 +308,8 @@ body {
     width: 98px;
     height: 98px;
     float: left;
-    border: 2px solid #41414b;
-    background-color: #33343d !important;
+    border: 2px solid #1D1D1D;
+    background-color: #1D1D1D !important;
     margin: 3px;
     transition: opacity 0.2s ease 0s;
     border-radius: 9px;
@@ -317,7 +317,7 @@ body {
 }
 
 .item-slot:hover {
-    background-color: #292932 !important;
+    background-color: #383838 !important;
     opacity: 90%;
 }
 
@@ -460,7 +460,7 @@ body {
     position: absolute;
     top: 0.3%;
     left: 0.15vw;
-    background-color: #41414b;
+    background-color: #1D1D1D;
     padding-right: 4px;
     padding-left: 4px;
     border-radius: 50px;
@@ -478,7 +478,7 @@ body {
     position: absolute;
     top: 0.3%;
     right: 0.15vw;
-    background-color: #41414b;
+    background-color: #1D1D1D;
     padding-right: 4px;
     padding-left: 4px;
     border-radius: 50px;
@@ -735,8 +735,8 @@ body {
     margin-right: 1vh;
     width: 10vh;
     height: 11vh;
-    border: 2px solid #41414b;
-    background-color: #33343d !important;
+    border: 2px solid #1D1D1D;
+    background-color: #1D1D1D !important;
     border-radius: 9px;
 }
 
@@ -881,8 +881,8 @@ body {
     width: 6.15rem;
     height: 6.15rem;
     float: left;
-    border: 2px solid #41414b;
-    background-color: #33343d !important;
+    border: 2px solid #1D1D1D;
+    background-color: #1D1D1D !important;
     margin: 3px;
     transition: opacity 0.2s ease 0s;
     border-radius: 9px;
@@ -894,7 +894,7 @@ body {
     position: absolute;
     top: 0.5%;
     left: 0.15vw;
-    background-color: #41414b;
+    background-color: #1D1D1D;
     padding-right: 4px;
     padding-left: 4px;
     border-radius: 50px;
@@ -912,7 +912,7 @@ body {
     position: absolute;
     top: 0.5%;
     right: 0.15vw;
-    background-color: #41414b;
+    background-color: #1D1D1D;
     padding-right: 4px;
     padding-left: 4px;
     border-radius: 50px;
@@ -1254,8 +1254,8 @@ body {
         width: 133px;
         height: 133px;
         float: left;
-        border: 2px solid #41414b;
-        background-color: #33343d !important;
+        border: 2px solid #1D1D1D;
+        background-color: #1D1D1D !important;
         margin: 3px;
         transition: opacity 0.2s ease 0s;
         border-radius: 9px;
@@ -1269,8 +1269,8 @@ body {
         width: 133px;
         height: 133px;
         float: left;
-        border: 2px solid #41414b;
-        background-color: #33343d !important;
+        border: 2px solid #1D1D1D;
+        background-color: #1D1D1D !important;
         margin: 3px;
         transition: opacity 0.2s ease 0s;
         border-radius: 9px;
