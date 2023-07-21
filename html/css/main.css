@@ -227,7 +227,7 @@ body {
 .player-inventory > .item-slot > .item-slot-key > p {
     position: absolute; 
     font-weight: 400; 
-    color: #20202062; 
+    color: #2d2d2d; 
     padding-top: 4vh; 
     padding-bottom: 0px; 
     padding-left: 2.35vh; 
@@ -240,7 +240,7 @@ body {
 .player-inventory-first > .item-slot > .item-slot-key > p {
     position: absolute; 
     font-weight: 400; 
-    color: #20202062; 
+    color: #2d2d2d; 
     padding-top: 4vh; 
     padding-bottom: 0px; 
     padding-left: 2.35vh; 
@@ -863,7 +863,7 @@ body {
 .z-hotbar-inventory > .z-hotbar-item-slot > .z-hotbar-item-slot-key > p {
     position: absolute; 
     font-weight: 400; 
-    color: #20202062; 
+    color: #2d2d2d; 
     padding-top: 42%; 
     padding-bottom: 0px; 
     padding-left: 29%; 
