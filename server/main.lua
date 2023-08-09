@@ -1674,7 +1674,7 @@ RegisterNetEvent('inventory:server:SetInventoryData', function(fromInventory, to
 		else
 			QBCore.Functions.Notify(src, "Item doesn't exist", "error")
 		end
-	elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "trunk" then
+elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "trunk" then
 		local plate = QBCore.Shared.SplitStr(fromInventory, "-")[2]
 		local fromItemData = Trunks[plate].items[fromSlot]
 		fromAmount = tonumber(fromAmount) or fromItemData.amount
@@ -1683,6 +1683,7 @@ RegisterNetEvent('inventory:server:SetInventoryData', function(fromInventory, to
 			if toInventory == "player" or toInventory == "hotbar" then
 				local toItemData = GetItemBySlot(src, toSlot)
 				RemoveFromTrunk(plate, fromSlot, itemInfo["name"], fromAmount)
+				SetTimeout(1500, function()
                 if toItemData ~= nil then
 					itemInfo = QBCore.Shared.Items[toItemData.name:lower()]
                     local toAmount = tonumber(toAmount) ~= nil and tonumber(toAmount) or toItemData.amount
@@ -1700,7 +1701,8 @@ RegisterNetEvent('inventory:server:SetInventoryData', function(fromInventory, to
                 else
 					TriggerEvent("qb-log:server:CreateLog", "trunk", "Received Item", "green", "**".. GetPlayerName(src) .. "** (citizenid: *"..Player.PlayerData.citizenid.."* | id: *"..src.."*) received item; name: **"..fromItemData.name.."**, amount: **" .. fromAmount.. "** plate: *" .. plate .. "*")
 				end
-                AddItem(src, fromItemData.name, fromAmount, toSlot, fromItemData.info, fromItemData["created"])
+				Player.Functions.AddItem(fromItemData.name, fromAmount, toSlot, fromItemData.info)
+                end)  -- this is the other line you're adding to close out the SetTimeout function
 			else
 				local toItemData = Trunks[plate].items[toSlot]
 				RemoveFromTrunk(plate, fromSlot, itemInfo["name"], fromAmount)
