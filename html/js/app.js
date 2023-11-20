@@ -1331,7 +1331,7 @@ function swap($fromSlot, $toSlot, $fromInv, $toInv, $toAmount) {
                 if (newData.info.quality !== fromData.info.quality  ) {
                     InventoryError($fromInv, $fromSlot);
                     $.post(
-                        "https://qb-inventory/Notify",
+                        "https://ps-inventory/Notify",
                         JSON.stringify({
                             message: "You can not stack items which are not the same quality.",
                             type: "error",
