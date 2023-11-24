@@ -1303,7 +1303,11 @@ RegisterNetEvent('inventory:server:OpenInventory', function(name, id, other)
 					if Player.PlayerData.job.name == "police" and Player.PlayerData.job.onduty then
 						secondInv.slots = Config.MaxInventorySlots
 					else
-						secondInv.slots = Config.MaxInventorySlots - 1
+						if OtherPlayer.PlayerData.job.name == 'police' then
+							secondInv.slots = Config.MaxInventorySlots - 41
+						else
+							secondInv.slots = Config.MaxInventorySlots - 1
+						end
 					end
 					Wait(250)
 				end
@@ -1899,6 +1903,7 @@ RegisterNetEvent('inventory:server:SetInventoryData', function(fromInventory, to
 			end
 		elseif QBCore.Shared.SplitStr(shopType, "_")[1] == "Itemshop" then
             if Player.Functions.RemoveMoney("cash", price, "itemshop-bought-item") then
+				exports['ap-government']:chargeCityTax(Player.PlayerData.source, "Item", price, "bank") --AP-Gov
                 if QBCore.Shared.SplitStr(itemData.name, "_")[1] == "weapon" then
                     itemData.info.serie = tostring(QBCore.Shared.RandomInt(2) .. QBCore.Shared.RandomStr(3) .. QBCore.Shared.RandomInt(1) .. QBCore.Shared.RandomStr(2) .. QBCore.Shared.RandomInt(3) .. QBCore.Shared.RandomStr(4))
                     itemData.info.quality = 100
@@ -1912,10 +1917,11 @@ RegisterNetEvent('inventory:server:SetInventoryData', function(fromInventory, to
                 AddItem(src, itemData.name, fromAmount, toSlot, itemData.info)
                 TriggerClientEvent('qb-shops:client:UpdateShop', src, QBCore.Shared.SplitStr(shopType, "_")[2], itemData, fromAmount)
                 QBCore.Functions.Notify(src, itemInfo["label"] .. " bought!", "success")
-                exports['ps-mdt']:CreateWeaponInfo(serial, imageurl, notes, owner, weapClass, weapModel)
+                --exports['ps-mdt']:CreateWeaponInfo(serial, imageurl, notes, owner, weapClass, weapModel)
                 TriggerEvent("qb-log:server:CreateLog", "shops", "Shop item bought", "green", "**"..GetPlayerName(src) .. "** bought a " .. itemInfo["label"] .. " for $"..price)
         elseif bankBalance >= price then
                 Player.Functions.RemoveMoney("bank", price, "itemshop-bought-item")
+				exports['ap-government']:chargeCityTax(Player.PlayerData.source, "Item", price, "bank") --AP-Gov
                 if QBCore.Shared.SplitStr(itemData.name, "_")[1] == "weapon" then
                     itemData.info.serie = tostring(QBCore.Shared.RandomInt(2) .. QBCore.Shared.RandomStr(3) .. QBCore.Shared.RandomInt(1) .. QBCore.Shared.RandomStr(2) .. QBCore.Shared.RandomInt(3) .. QBCore.Shared.RandomStr(4))
                     itemData.info.quality = 100
@@ -1929,7 +1935,7 @@ RegisterNetEvent('inventory:server:SetInventoryData', function(fromInventory, to
                 AddItem(src, itemData.name, fromAmount, toSlot, itemData.info)
                 TriggerClientEvent('qb-shops:client:UpdateShop', src, QBCore.Shared.SplitStr(shopType, "_")[2], itemData, fromAmount)
                 QBCore.Functions.Notify(src, itemInfo["label"] .. " bought!", "success")
-				exports['ps-mdt']:CreateWeaponInfo(serial, imageurl, notes, owner, weapClass, weapModel)
+				--exports['ps-mdt']:CreateWeaponInfo(serial, imageurl, notes, owner, weapClass, weapModel)
                 TriggerEvent("qb-log:server:CreateLog", "shops", "Shop item bought", "green", "**"..GetPlayerName(src) .. "** bought a " .. itemInfo["label"] .. " for $"..price)
             else
                 QBCore.Functions.Notify(src, "You don't have enough cash..", "error")
@@ -2167,6 +2173,7 @@ QBCore.Commands.Add("giveitem", "Give An Item (Admin Only)", {{name="id", help="
 			if itemData then
 				-- check iteminfo
 				local info = {}
+				--[[local cardlist = {"id_card", "driver_license", "weaponlicense", "lawyerpass"}
 				if itemData["name"] == "id_card" then
 					info.citizenid = Player.PlayerData.citizenid
 					info.firstname = Player.PlayerData.charinfo.firstname
@@ -2178,13 +2185,22 @@ QBCore.Commands.Add("giveitem", "Give An Item (Admin Only)", {{name="id", help="
 					info.firstname = Player.PlayerData.charinfo.firstname
 					info.lastname = Player.PlayerData.charinfo.lastname
 					info.birthdate = Player.PlayerData.charinfo.birthdate
-					info.type = "Class C Driver License"
+					info.type = "Class C Driver License"]]
+				local cardlist = {"id_card", "driver_license", "weaponlicense", "lawyerpass"}
+				if string.find(table.concat(cardlist, ","), itemData["name"]) then
+					exports['um-idcard']:CreateMetaLicense(source, itemData["name"])
+					QBCore.Functions.Notify(source, Lang:t("notify.yhg") ..GetPlayerName(id).." "..amount.." "..itemData["name"].. "", "success")
+					return
 				elseif itemData["type"] == "weapon" then
 					amount = 1
 					info.serie = tostring(QBCore.Shared.RandomInt(2) .. QBCore.Shared.RandomStr(3) .. QBCore.Shared.RandomInt(1) .. QBCore.Shared.RandomStr(2) .. QBCore.Shared.RandomInt(3) .. QBCore.Shared.RandomStr(4))
 					info.quality = 100
 				elseif itemData["name"] == "harness" then
 					info.uses = 20
+				elseif itemData["name"] == "syphoningkit" then
+					info.gasamount = 0
+				elseif itemData["name"] == "jerrycan" then
+					info.gasamount = 0
 				elseif itemData["name"] == "markedbills" then
 					info.worth = math.random(5000, 10000)
 				elseif itemData["name"] == "labkey" then
@@ -2248,7 +2264,7 @@ end, 'admin')
 --     end
 -- end)
 
-CreateUsableItem("driver_license", function(source, item)
+--[[CreateUsableItem("driver_license", function(source, item)
 	local playerPed = GetPlayerPed(source)
 	local playerCoords = GetEntityCoords(playerPed)
 	local players = QBCore.Functions.GetPlayers()
@@ -2269,9 +2285,9 @@ CreateUsableItem("driver_license", function(source, item)
 			)
 		end
 	end
-end)
+end)]]
 
-CreateUsableItem("id_card", function(source, item)
+--[[CreateUsableItem("id_card", function(source, item)
 	local playerPed = GetPlayerPed(source)
 	local playerCoords = GetEntityCoords(playerPed)
 	local players = QBCore.Functions.GetPlayers()
@@ -2298,7 +2314,7 @@ CreateUsableItem("id_card", function(source, item)
 			)
 		end
 	end
-end)
+end)]]
 
 
 CreateThread(function()
@@ -2316,13 +2332,17 @@ end)
 -- Decay System
 
 local TimeAllowed = 60 * 60 * 24 * 1 -- Maths for 1 day dont touch its very important and could break everything
-function ConvertQuality(item)
+function ConvertQuality(item, inStach)
 	local StartDate = item.created
     local DecayRate = QBCore.Shared.Items[item.name:lower()]["decay"] ~= nil and QBCore.Shared.Items[item.name:lower()]["decay"] or 0.0
     if DecayRate == nil then
         DecayRate = 0
     end
-    local TimeExtra = math.ceil((TimeAllowed * DecayRate))
+	if inStach then
+    	TimeExtra = math.ceil((TimeAllowed * DecayRate * 3.0))
+	else
+		TimeExtra = math.ceil((TimeAllowed * DecayRate))
+	end
     local percentDone = 100 - math.ceil((((os.time() - StartDate) / TimeExtra) * 100))
     if DecayRate == 0 then
         percentDone = 100
@@ -2351,7 +2371,7 @@ QBCore.Functions.CreateCallback('inventory:server:ConvertQuality', function(sour
                     local info = {quality = 100}
                     item.info = info
                 end
-                local quality = ConvertQuality(item)
+                local quality = ConvertQuality(item, false)
                 if item.info.quality then
                     if quality < item.info.quality then
                         item.info.quality = quality
@@ -2384,7 +2404,7 @@ QBCore.Functions.CreateCallback('inventory:server:ConvertQuality', function(sour
 							local info = {quality = 100}
 							item.info = info
 						end
-						local quality = ConvertQuality(item)
+						local quality = ConvertQuality(item, false)
                     	if item.info.quality then
 							if quality < item.info.quality then
 								item.info.quality = quality
@@ -2416,7 +2436,7 @@ QBCore.Functions.CreateCallback('inventory:server:ConvertQuality', function(sour
 							local info = {quality = 100}
 							item.info = info
 						end
-						local quality = ConvertQuality(item)
+						local quality = ConvertQuality(item, false)
                     	if item.info.quality then
 							if quality < item.info.quality then
 								item.info.quality = quality
@@ -2451,7 +2471,7 @@ QBCore.Functions.CreateCallback('inventory:server:ConvertQuality', function(sour
 							local info = {quality = 100}
 							item.info = info
 						end
-						local quality = ConvertQuality(item)
+						local quality = ConvertQuality(item, true)
 						if item.info.quality then
 							if quality < item.info.quality then
 								item.info.quality = quality
