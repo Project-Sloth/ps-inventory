@@ -14,6 +14,27 @@ local isCrafting = false
 local isHotbar = false
 local WeaponAttachments = {}
 local showBlur = true
+local driver = nil
+local isDriver = false
+
+function isInvOpen()
+    return inInventory
+end
+
+exports('isInvOpen', isInvOpen)
+
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+    Wait(5000)
+    --checkDriver()
+end)
+
+  -- Handles state if resource is restarted live.
+AddEventHandler('onResourceStart', function(resource)
+    if (GetCurrentResourceName() ~= resource) then
+        return
+    end
+    --checkDriver()
+end)
 
 local function HasItem(items, amount)
     local isTable = type(items) == 'table'
@@ -179,7 +200,7 @@ local function openAnim()
     local ped = PlayerPedId()
     LoadAnimDict('pickup_object')
     TaskPlayAnim(ped,'pickup_object', 'putdown_low', 5.0, 1.5, 1.0, 48, 0.0, 0, 0, 0)
-    Wait(500)
+    Wait(100)
     StopAnimTask(ped, 'pickup_object', 'putdown_low', 1.0)
 end
 
@@ -310,6 +331,7 @@ local function CreateItemDrop(index)
     DropsNear[index].isDropShowing = true
     PlaceObjectOnGroundProperly(dropItem)
     FreezeEntityPosition(dropItem, true)
+    SetEntityCollision(dropItem, false, false)
 	if Config.UseTarget then
 		exports['qb-target']:AddTargetEntity(dropItem, {
 			options = {
@@ -405,12 +427,12 @@ RegisterNetEvent('inventory:client:requiredItems', function(items, bool)
     })
 end)
 
-RegisterNetEvent('inventory:server:RobPlayer', function(TargetId)
+--[[RegisterNetEvent('inventory:server:RobPlayer', function(TargetId)
     SendNUIMessage({
         action = "RobMoney",
         TargetId = TargetId,
     })
-end)
+end)]]
 
 RegisterNetEvent('inventory:client:OpenInventory', function(PlayerAmmo, inventory, other)
     if not IsEntityDead(PlayerPedId()) then
@@ -432,7 +454,7 @@ RegisterNetEvent('inventory:client:OpenInventory', function(PlayerAmmo, inventor
             QBCore.Functions.TriggerCallback('inventory:server:ConvertQuality', function(data)
                 inventory = data.inventory
                 other = data.other
-                SendNUIMessage({
+                --[[SendNUIMessage({
                     action = "open",
                     inventory = inventory,
                     slots = Config.MaxInventorySlots,
@@ -441,13 +463,31 @@ RegisterNetEvent('inventory:client:OpenInventory', function(PlayerAmmo, inventor
                     Ammo = PlayerAmmo,
                     maxammo = Config.MaximumAmmoValues,
                     Name = PlayerData.charinfo.firstname .." ".. PlayerData.charinfo.lastname .." - [".. GetPlayerServerId(PlayerId()) .."]", 
+                })]]
+
+                player = PlayerId()
+                pname = GetPlayerName(player)
+                pid = GetPlayerServerId(player)
+                SendNUIMessage({
+                    action = "open",
+                    inventory = inventory,
+                    slots = Config.MaxInventorySlots,
+                    other = other,
+                    maxweight = Config.MaxInventoryWeight,
+                    Ammo = PlayerAmmo,
+                    maxammo = Config.MaximumAmmoValues,
+                    pid = pid,
+                    money = PlayerData.money['cash'],
+                    bank = PlayerData.money['bank'],
+                    playername = PlayerData.charinfo.firstname .. ' ' .. PlayerData.charinfo.lastname,
                 })
+                
                 inInventory = true
                 end, inventory, other)
 
         end)
         else
-            Wait(500)
+            Wait(100)
             ToggleHotbar(false)
             if showBlur == true then
                 TriggerScreenblurFadeIn(1000)
@@ -459,7 +499,7 @@ RegisterNetEvent('inventory:client:OpenInventory', function(PlayerAmmo, inventor
         QBCore.Functions.TriggerCallback('inventory:server:ConvertQuality', function(data)
             inventory = data.inventory
             other = data.other
-            SendNUIMessage({
+            --[[SendNUIMessage({
                 action = "open",
                 inventory = inventory,
                 slots = Config.MaxInventorySlots,
@@ -468,7 +508,25 @@ RegisterNetEvent('inventory:client:OpenInventory', function(PlayerAmmo, inventor
                 Ammo = PlayerAmmo,
                 maxammo = Config.MaximumAmmoValues,
                 Name = PlayerData.charinfo.firstname .." ".. PlayerData.charinfo.lastname .." - [".. GetPlayerServerId(PlayerId()) .."]", 
+            })]]
+
+            player = PlayerId()
+            pname = GetPlayerName(player)
+            pid = GetPlayerServerId(player)
+            SendNUIMessage({
+                action = "open",
+                inventory = inventory,
+                slots = Config.MaxInventorySlots,
+                other = other,
+                maxweight = Config.MaxInventoryWeight,
+                Ammo = PlayerAmmo,
+                maxammo = Config.MaximumAmmoValues,
+                pid = pid,
+                money = PlayerData.money['cash'],
+                bank = PlayerData.money['bank'],
+                playername = PlayerData.charinfo.firstname .. ' ' .. PlayerData.charinfo.lastname,
             })
+
             inInventory = true
             end,inventory,other)
         end
@@ -605,6 +663,7 @@ RegisterNetEvent('inventory:client:UseWeapon', function(weaponData, shootbool)
         TriggerEvent('weapons:client:DrawWeapon', weaponName)
         TriggerEvent('weapons:client:SetCurrentWeapon', weaponData, shootbool)
         local ammo = tonumber(weaponData.info.ammo) or 0
+        local tint = tonumber(weaponData.info.tint) or 0 --Tint
 
         if weaponName == "weapon_fireextinguisher" then
             ammo = 4000
@@ -613,6 +672,7 @@ RegisterNetEvent('inventory:client:UseWeapon', function(weaponData, shootbool)
         GiveWeaponToPed(ped, weaponHash, ammo, false, false)
         SetPedAmmo(ped, weaponHash, ammo)
         SetCurrentPedWeapon(ped, weaponHash, true)
+        SetPedWeaponTintIndex(ped, weaponHash, tint) --Tint
 
         if weaponData.info.attachments then
             for _, attachment in pairs(weaponData.info.attachments) do
@@ -735,55 +795,63 @@ RegisterCommand('inventory', function()
                 local vehicleClass = GetVehicleClass(curVeh)
                 local maxweight
                 local slots
-                if vehicleClass == 0 then
+                if vehicleClass == 0 then --Compact
                     maxweight = 38000
                     slots = 30
-                elseif vehicleClass == 1 then
+                elseif vehicleClass == 1 then --Sedans
                     maxweight = 50000
                     slots = 40
-                elseif vehicleClass == 2 then
+                elseif vehicleClass == 2 then --SUVs
                     maxweight = 75000
                     slots = 50
-                elseif vehicleClass == 3 then
+                elseif vehicleClass == 3 then --Coupes
                     maxweight = 42000
                     slots = 35
-                elseif vehicleClass == 4 then
+                elseif vehicleClass == 4 then --Muscle
                     maxweight = 38000
                     slots = 30
-                elseif vehicleClass == 5 then
+                elseif vehicleClass == 5 then --Sports Classics
                     maxweight = 30000
                     slots = 25
-                elseif vehicleClass == 6 then
+                elseif vehicleClass == 6 then --Sports
                     maxweight = 30000
                     slots = 25
-                elseif vehicleClass == 7 then
+                elseif vehicleClass == 7 then --Super
                     maxweight = 30000
                     slots = 25
-                elseif vehicleClass == 8 then
-                    maxweight = 15000
-                    slots = 15
-                elseif vehicleClass == 9 then
-                    maxweight = 60000
-                    slots = 35
-                elseif vehicleClass == 12 then
-                    maxweight = 120000
-                    slots = 35
-                elseif vehicleClass == 13 then
+                elseif vehicleClass == 8 then --Motorcycles
                     maxweight = 0
                     slots = 0
-                elseif vehicleClass == 14 then
+                elseif vehicleClass == 9 then --Off-road
+                    maxweight = 60000
+                    slots = 35
+                elseif vehicleClass == 12 then --Vans
+                    maxweight = 120000
+                    slots = 35
+                elseif vehicleClass == 13 then --Cycles
+                    maxweight = 0
+                    slots = 0
+                elseif vehicleClass == 14 then --Boats
                     maxweight = 120000
                     slots = 50
-                elseif vehicleClass == 15 then
+                elseif vehicleClass == 15 then --Helicopters
                     maxweight = 120000
                     slots = 50
-                elseif vehicleClass == 16 then
+                elseif vehicleClass == 16 then --Planes
                     maxweight = 120000
                     slots = 50
                 else
                     maxweight = 60000
                     slots = 35
                 end
+                --10 Industrial
+                --11 Utility
+                --17 Service
+                --18 Emergency
+                --19 Military
+                --20 Commercial
+                --21 Trains
+                --22 Open Wheel
                 local other = {
                     maxweight = maxweight,
                     slots = slots,
@@ -821,7 +889,7 @@ RegisterKeyMapping('hotbar', 'Toggles keybind slots', 'keyboard', 'z')
 
 for i = 1, 6 do
     RegisterCommand('slot' .. i,function()
-        if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not LocalPlayer.state.inv_busy then
+        if not isDriver and not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not LocalPlayer.state.inv_busy then
             if i == 6 then
                 i = Config.MaxInventorySlots
             end
@@ -1057,7 +1125,7 @@ end)
 
 
     --qb-target
-    RegisterNetEvent("inventory:client:Crafting", function(dropId)
+    --[[RegisterNetEvent("inventory:client:Crafting", function(dropId)
         local crafting = {}
         crafting.label = "Crafting"
         crafting.items = GetThresholdItems()
@@ -1096,4 +1164,22 @@ end)
                 },
             },
         distance = 1.0
-    })
+    })]]
+
+CreateThread(function()
+    while true do
+        ped = GetPlayerPed(-1)
+        pedInVeh = IsPedInAnyVehicle(ped, false)
+        vehicle = GetVehiclePedIsIn(ped, false)
+        driver = GetPedInVehicleSeat(vehicle, -1)
+            
+        if pedInVeh and driver == ped then
+            isDriver = true
+        elseif pedInVeh and driver ~= ped then
+            isDriver = false
+        elseif not pedInVeh and isDriver then
+            isDriver = false
+        end
+        Wait(1000)
+    end
+end)
