@@ -16,6 +16,10 @@ Config.Progressbar = {
     maxT = 500              -- Max Time for Inventory to open
 }
 
+Config.BlacklistedItems = {
+    "weapon_combatpdw",
+}
+
 Config.VendingObjects = {
     "prop_vend_soda_01",
     "prop_vend_soda_02",
