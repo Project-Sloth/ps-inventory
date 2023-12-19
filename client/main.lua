@@ -114,7 +114,7 @@ local function FormatWeaponAttachments(itemdata)
             attachments[#attachments+1] = {
                 attachment = v.item,
                 label = v.label,
-                image = QBCore.Shared.Items[v.item].image,
+                image = Core.Shared.Items[v.item].image,
                 component = v.component
             }
         end
@@ -128,7 +128,7 @@ end
 
 
 local function OpenTrunk()
-    local vehicle = QBCore.Functions.GetClosestVehicle()
+    local vehicle = Core.Functions.GetClosestVehicle()
     LoadAnimDict("amb@prop_human_bum_bin@idle_b")
     TaskPlayAnim(PlayerPedId(), "amb@prop_human_bum_bin@idle_b", "idle_d", 4.0, 4.0, -1, 50, 0, false, false, false)
     if IsBackEngine(GetEntityModel(vehicle)) then
@@ -140,7 +140,7 @@ end
 
 ---Closes the trunk of the closest vehicle
 local function CloseTrunk()
-    local vehicle = QBCore.Functions.GetClosestVehicle()
+    local vehicle = Core.Functions.GetClosestVehicle()
     LoadAnimDict("amb@prop_human_bum_bin@idle_b")
     TaskPlayAnim(PlayerPedId(), "amb@prop_human_bum_bin@idle_b", "exit", 4.0, 4.0, -1, 50, 0, false, false, false)
     if IsBackEngine(GetEntityModel(vehicle)) then
@@ -695,7 +695,7 @@ RegisterCommand('closeinv', function()
     closeInventory()
 end, false)
 
-RegisterNetEvent("qb-inventory:client:closeinv", function()
+RegisterNetEvent("ps-inventory:client:closeinv", function()
     closeInventory()
 end)
 
@@ -839,7 +839,7 @@ for i = 1, 6 do
     RegisterKeyMapping('slot' .. i, 'Uses the item in slot ' .. i, 'keyboard', i)
 end
 
-RegisterNetEvent('qb-inventory:client:giveAnim', function()
+RegisterNetEvent('ps-inventory:client:giveAnim', function()
     LoadAnimDict('mp_common')
 	TaskPlayAnim(PlayerPedId(), 'mp_common', 'givetake1_b', 8.0, 1.0, -1, 16, 0, 0, 0, 0)
 end)
