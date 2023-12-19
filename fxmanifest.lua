@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 description 'ps-inventory'
-version '1.0.0'
+version '1.0.1'
 
 shared_scripts {
 	'config.lua',
