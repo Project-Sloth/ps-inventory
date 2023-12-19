@@ -128,7 +128,7 @@ end
 
 
 local function OpenTrunk()
-    local vehicle = Core.Functions.GetClosestVehicle()
+    local vehicle = QBCore.Functions.GetClosestVehicle()
     LoadAnimDict("amb@prop_human_bum_bin@idle_b")
     TaskPlayAnim(PlayerPedId(), "amb@prop_human_bum_bin@idle_b", "idle_d", 4.0, 4.0, -1, 50, 0, false, false, false)
     if IsBackEngine(GetEntityModel(vehicle)) then
@@ -140,7 +140,7 @@ end
 
 ---Closes the trunk of the closest vehicle
 local function CloseTrunk()
-    local vehicle = Core.Functions.GetClosestVehicle()
+    local vehicle = QBCore.Functions.GetClosestVehicle()
     LoadAnimDict("amb@prop_human_bum_bin@idle_b")
     TaskPlayAnim(PlayerPedId(), "amb@prop_human_bum_bin@idle_b", "exit", 4.0, 4.0, -1, 50, 0, false, false, false)
     if IsBackEngine(GetEntityModel(vehicle)) then
