@@ -1189,7 +1189,7 @@ local function OpenInventory(name, id, other, origin)
 				secondInv.slots = 0
 			end
 		end
-		TriggerClientEvent("lj-inventory:client:closeinv", id)
+		TriggerClientEvent("ps-inventory:client:closeinv", id)
 		TriggerClientEvent("inventory:client:OpenInventory", src, {}, Player.PlayerData.items, secondInv)
 	else
 		TriggerClientEvent("inventory:client:OpenInventory", src, {}, Player.PlayerData.items)
@@ -1560,7 +1560,7 @@ RegisterNetEvent('inventory:server:OpenInventory', function(name, id, other)
 					secondInv.slots = 0
 				end
 			end
-			TriggerClientEvent("lj-inventory:client:closeinv", id)
+			TriggerClientEvent("ps-inventory:client:closeinv", id)
 			TriggerClientEvent("inventory:client:OpenInventory", src, {}, Player.PlayerData.items, secondInv)
 		else
 			TriggerClientEvent("inventory:client:OpenInventory", src, {}, Player.PlayerData.items)
