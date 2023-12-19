@@ -114,7 +114,7 @@ local function FormatWeaponAttachments(itemdata)
             attachments[#attachments+1] = {
                 attachment = v.item,
                 label = v.label,
-                image = Core.Shared.Items[v.item].image,
+                image = QBCore.Shared.Items[v.item].image,
                 component = v.component
             }
         end
