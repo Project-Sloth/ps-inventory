@@ -2247,7 +2247,7 @@ RegisterNetEvent('inventory:server:SetInventoryData', function(fromInventory, to
 	end
 end)
 
-RegisterNetEvent('qb-inventory:server:SaveStashItems', function(stashId, items)
+RegisterNetEvent('ps-inventory:server:SaveStashItems', function(stashId, items)
     MySQL.Async.insert('INSERT INTO stashitems (stash, items) VALUES (:stash, :items) ON DUPLICATE KEY UPDATE items = :items', {
         ['stash'] = stashId,
         ['items'] = json.encode(items)
@@ -2278,8 +2278,8 @@ RegisterServerEvent("inventory:server:GiveItem", function(target, name, amount, 
 				TriggerClientEvent('inventory:client:ItemBox',src, QBCore.Shared.Items[item.name], "remove")
 				QBCore.Functions.Notify(src, "You gave " .. OtherPlayer.PlayerData.charinfo.firstname.." "..OtherPlayer.PlayerData.charinfo.lastname.. " " .. amount .. " " .. item.label .."!")
 				TriggerClientEvent("inventory:client:UpdatePlayerInventory", src, true)
-				TriggerClientEvent('qb-inventory:client:giveAnim', src)
-				TriggerClientEvent('qb-inventory:client:giveAnim', target)
+				TriggerClientEvent('ps-inventory:client:giveAnim', src)
+				TriggerClientEvent('ps-inventory:client:giveAnim', target)
 			else
 				AddItem(src, item.name, amount, item.slot, item.info, item.created)
 				QBCore.Functions.Notify(src, "The other players inventory is full!", "error")
@@ -2305,7 +2305,7 @@ end)
 
 -- callback
 
-QBCore.Functions.CreateCallback('qb-inventory:server:GetStashItems', function(source, cb, stashId)
+QBCore.Functions.CreateCallback('ps-inventory:server:GetStashItems', function(source, cb, stashId)
 	cb(GetStashItems(stashId))
 end)
 
