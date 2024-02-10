@@ -33,3 +33,5 @@ files {
 }
 
 lua54 'yes'
+
+dependency 'qb-weapons'
