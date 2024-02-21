@@ -19,7 +19,7 @@ Config.Progressbar = {
 Config.VendingObjects = {
     "prop_vend_soda_01",
     "prop_vend_soda_02",
-    "prop_vend_water_01"
+    -- "prop_vend_water_01"
 }
 
 Config.BinObjects = {
