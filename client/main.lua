@@ -740,7 +740,7 @@ RegisterCommand('inventory', function()
             end
 
             if CurrentVehicle then -- Trunk
-                local vehicleModel = GetEntityModel(curVeh)
+                local vehicleModel = string.lower(GetDisplayNameFromVehicleModel(GetEntityModel(curVeh)))
                 local vehicleClass = GetVehicleClass(curVeh)
                 local maxweight
                 local slots
