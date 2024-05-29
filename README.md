@@ -56,7 +56,8 @@ Future updates will be coming and we will of course support all normal monitor s
 * Make sure that the folder is named `ps-inventory` and **not** `ps-inventory-main`
 * Replace all occurrences of `qb-inventory` with `ps-inventory`.<br>The example below uses Visual Studio Code to replace all instances.
 
-![image](https://github.com/Z3rio/ps-inventory/assets/54480523/00fa21a5-4be2-443f-aff2-4b3202b662dc)
+![image](https://github.com/Project-Sloth/ps-inventory/assets/88394932/cbe81761-a86c-4ad5-8128-6024d4a178f6)
+
 
 ## Set up the decay system
 
