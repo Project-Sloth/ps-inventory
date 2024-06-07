@@ -51,7 +51,7 @@ exports("HasItem", HasItem)
 RegisterNUICallback('showBlur', function()
     Wait(50)
     TriggerEvent("ps-inventory:client:showBlur")
-end) 
+end)
 RegisterNetEvent("ps-inventory:client:showBlur", function()
     Wait(50)
     showBlur = not showBlur
@@ -448,7 +448,7 @@ RegisterNetEvent('inventory:client:OpenInventory', function(PlayerAmmo, inventor
                     maxweight = Config.MaxInventoryWeight,
                     Ammo = PlayerAmmo,
                     maxammo = Config.MaximumAmmoValues,
-                    Name = PlayerData.charinfo.firstname .." ".. PlayerData.charinfo.lastname .." - [".. GetPlayerServerId(PlayerId()) .."]", 
+                    Name = PlayerData.charinfo.firstname .." ".. PlayerData.charinfo.lastname .." - [".. GetPlayerServerId(PlayerId()) .."]",
                 })
                 inInventory = true
                 end, inventory, other)
@@ -475,7 +475,7 @@ RegisterNetEvent('inventory:client:OpenInventory', function(PlayerAmmo, inventor
                 maxweight = Config.MaxInventoryWeight,
                 Ammo = PlayerAmmo,
                 maxammo = Config.MaximumAmmoValues,
-                Name = PlayerData.charinfo.firstname .." ".. PlayerData.charinfo.lastname .." - [".. GetPlayerServerId(PlayerId()) .."]", 
+                Name = PlayerData.charinfo.firstname .." ".. PlayerData.charinfo.lastname .." - [".. GetPlayerServerId(PlayerId()) .."]",
             })
             inInventory = true
             end,inventory,other)
@@ -589,29 +589,29 @@ RegisterNetEvent('inventory:client:UseWeapon', function(weaponData, shootbool)
     local weaponHash = joaat(weaponData.name)
     local weaponinhand = GetCurrentPedWeapon(PlayerPedId())
     if currentWeapon == weaponName and weaponinhand then
-        TriggerEvent('weapons:client:DrawWeapon', nil)
+        TriggerEvent('qb-weapons:client:DrawWeapon', nil)
         SetCurrentPedWeapon(ped, `WEAPON_UNARMED`, true)
         RemoveAllPedWeapons(ped, true)
-        TriggerEvent('weapons:client:SetCurrentWeapon', nil, shootbool)
+        TriggerEvent('qb-weapons:client:SetCurrentWeapon', nil, shootbool)
         currentWeapon = nil
     elseif weaponName == "weapon_stickybomb" or weaponName == "weapon_pipebomb" or weaponName == "weapon_smokegrenade" or weaponName == "weapon_flare" or weaponName == "weapon_proxmine" or weaponName == "weapon_ball"  or weaponName == "weapon_molotov" or weaponName == "weapon_grenade" or weaponName == "weapon_bzgas" then
-        TriggerEvent('weapons:client:DrawWeapon', weaponName)
+        TriggerEvent('qb-weapons:client:DrawWeapon', weaponName)
         GiveWeaponToPed(ped, weaponHash, 1, false, false)
         SetPedAmmo(ped, weaponHash, 1)
         SetCurrentPedWeapon(ped, weaponHash, true)
-        TriggerEvent('weapons:client:SetCurrentWeapon', weaponData, shootbool)
+        TriggerEvent('qb-weapons:client:SetCurrentWeapon', weaponData, shootbool)
         currentWeapon = weaponName
     elseif weaponName == "weapon_snowball" then
-        TriggerEvent('weapons:client:DrawWeapon', weaponName)
+        TriggerEvent('qb-weapons:client:DrawWeapon', weaponName)
         GiveWeaponToPed(ped, weaponHash, 10, false, false)
         SetPedAmmo(ped, weaponHash, 10)
         SetCurrentPedWeapon(ped, weaponHash, true)
         TriggerServerEvent('inventory:server:snowball', 'remove')
-        TriggerEvent('weapons:client:SetCurrentWeapon', weaponData, shootbool)
+        TriggerEvent('qb-weapons:client:SetCurrentWeapon', weaponData, shootbool)
         currentWeapon = weaponName
     else
-        TriggerEvent('weapons:client:DrawWeapon', weaponName)
-        TriggerEvent('weapons:client:SetCurrentWeapon', weaponData, shootbool)
+        TriggerEvent('qb-weapons:client:DrawWeapon', weaponName)
+        TriggerEvent('qb-weapons:client:SetCurrentWeapon', weaponData, shootbool)
         local ammo = tonumber(weaponData.info.ammo) or 0
 
         if weaponName == "weapon_fireextinguisher" then
@@ -635,7 +635,7 @@ end)
 RegisterNetEvent('inventory:client:CheckWeapon', function(weaponName)
     if currentWeapon ~= weaponName:lower() then return end
     local ped = PlayerPedId()
-    TriggerEvent('weapons:ResetHolster')
+    TriggerEvent('qb-weapons:ResetHolster')
     SetCurrentPedWeapon(ped, `WEAPON_UNARMED`, true)
     RemoveAllPedWeapons(ped, true)
     currentWeapon = nil
@@ -833,7 +833,7 @@ RegisterNUICallback('RemoveAttachment', function(data, cb)
     local WeaponData = QBCore.Shared.Items[data.WeaponData.name]
     print(data.AttachmentData.attachment:gsub("(.*).*_",''))
     data.AttachmentData.attachment = data.AttachmentData.attachment:gsub("(.*).*_",'')
-    QBCore.Functions.TriggerCallback('weapons:server:RemoveAttachment', function(NewAttachments)
+    QBCore.Functions.TriggerCallback('qb-weapons:server:RemoveAttachment', function(NewAttachments)
         if NewAttachments ~= false then
             local attachments = {}
             RemoveWeaponComponentFromPed(ped, GetHashKey(data.WeaponData.name), GetHashKey(data.AttachmentData.component))
@@ -1035,15 +1035,15 @@ end)
         crafting.items = GetThresholdItems()
         TriggerServerEvent("inventory:server:OpenInventory", "crafting", math.random(1, 99), crafting)
     end)
-    
-    
+
+
     RegisterNetEvent("inventory:client:WeaponAttachmentCrafting", function(dropId)
         local crafting = {}
         crafting.label = "Attachment Crafting"
         crafting.items = GetAttachmentThresholdItems()
         TriggerServerEvent("inventory:server:OpenInventory", "attachment_crafting", math.random(1, 99), crafting)
     end)
-    
+
     local toolBoxModels = {
         `prop_toolchest_05`,
         `prop_tool_bench02_ld`,
@@ -1059,12 +1059,12 @@ end)
                 {
                     event = "inventory:client:WeaponAttachmentCrafting",
                     icon = "fas fa-wrench",
-                    label = "Weapon Attachment Crafting", 
+                    label = "Weapon Attachment Crafting",
                 },
                 {
                     event = "inventory:client:Crafting",
                     icon = "fas fa-wrench",
-                    label = "Item Crafting", 
+                    label = "Item Crafting",
                 },
             },
         distance = 1.0
