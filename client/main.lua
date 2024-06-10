@@ -107,16 +107,29 @@ local function LoadAnimDict(dict)
 end
 
 local function FormatWeaponAttachments(itemdata)
+    if not itemdata.info or not itemdata.info.attachments or #itemdata.info.attachments == 0 then
+        return {}
+    end
     local attachments = {}
-    itemdata.name = itemdata.name:upper()
-    if itemdata.info.attachments ~= nil and next(itemdata.info.attachments) ~= nil then
-        for _, v in pairs(itemdata.info.attachments) do
-            attachments[#attachments+1] = {
-                attachment = v.item,
-                label = v.label,
-                image = QBCore.Shared.Items[v.item].image,
-                component = v.component
-            }
+    local weaponName = itemdata.name
+    local WeaponAttachments = exports['qb-weapons']:getConfigWeaponAttachments()
+    if not WeaponAttachments then return {} end
+    for attachmentType, weapons in pairs(WeaponAttachments) do
+        local componentHash = weapons[weaponName]
+        if componentHash then
+            for _, attachmentData in pairs(itemdata.info.attachments) do
+                if attachmentData.component == componentHash then
+                    local label = QBCore.Shared.Items[attachmentType] and QBCore.Shared.Items[attachmentType].label or 'Unknown'
+                    local image = QBCore.Shared.Items[attachmentType] and QBCore.Shared.Items[attachmentType].image
+                    local component = QBCore.Shared.Items[attachmentType] and QBCore.Shared.Items[attachmentType].component
+                    attachments[#attachments + 1] = {
+                        attachment = attachmentType,
+                        label = label,
+                        image = image,
+                        component = component
+                    }
+                end
+            end
         end
     end
     return attachments
