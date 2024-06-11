@@ -146,11 +146,6 @@ local function AddItem(source, item, amount, slot, info, created)
 	local totalWeight = GetTotalWeight(Player.PlayerData.items)
 	local itemInfo = QBCore.Shared.Items[item:lower()]
 	local time = os.time()
-	if not created then
-		itemInfo['created'] = time
-	else
-		itemInfo['created'] = created
-	end
 	if not itemInfo and not Player.Offline then
 		QBCore.Functions.Notify(source, "Item does not exist", 'error')
 		return false
