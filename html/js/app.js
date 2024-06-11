@@ -278,7 +278,6 @@ function FormatAttachmentInfo(data) {
         function(data) {
             var AmmoLabel = "9mm";
             var Durability = 100;
-            console.log(JSON.stringify(data))
 
             if (data.WeaponData.ammotype == "AMMO_RIFLE") {
                 AmmoLabel = "7.62";
