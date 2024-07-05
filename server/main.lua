@@ -1030,6 +1030,7 @@ local function OpenInventory(name, id, other, origin)
 					Stashes[id].isOpen = src
 					Stashes[id].label = secondInv.label
 				end
+				TriggerClientEvent('inventory:client:SetCurrentStash', src, id)
 			end
 		elseif name == "trunk" then
 			if Trunks[id] then
