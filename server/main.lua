@@ -984,7 +984,7 @@ local function OpenInventory(name, id, other, origin)
 	local ply = Player(src)
     local Player = QBCore.Functions.GetPlayer(src)
 	if ply.state.inv_busy then
-		return QBCore.Functions.Notify(src, Lang:t("notify.noaccess"), 'error')
+		return QBCore.Functions.Notify(src, "Not Accessible", 'error')
 	end
 	if name and id then
 		local secondInv = {}
@@ -1355,7 +1355,7 @@ RegisterNetEvent('ps-inventory:server:OpenInventory', function(name, id, other)
 		local ply = Player(src)
 		local Player = QBCore.Functions.GetPlayer(src)
 		if ply.state.inv_busy then
-			return QBCore.Functions.Notify(src, Lang:t("notify.noaccess"), 'error')
+			return QBCore.Functions.Notify(src, "Not Accessible", 'error')
 		end
 		if name and id then
 			local secondInv = {}
@@ -1936,7 +1936,7 @@ RegisterNetEvent('ps-inventory:server:SetInventoryData', function(fromInventory,
                 AddToTrunk(plate, toSlot, fromSlot, itemInfo["name"], fromAmount, fromItemData.info, itemInfo["created"])
 			end
 		else
-            QBCore.Functions.Notify(src, Lang:t("notify.itemexist"), "error")
+            QBCore.Functions.Notify(src, "Item doesn\'t exist", 'error')
 		end
 	elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "glovebox" then
 		local plate = QBCore.Shared.SplitStr(fromInventory, "-")[2]
@@ -1984,7 +1984,7 @@ RegisterNetEvent('ps-inventory:server:SetInventoryData', function(fromInventory,
                 AddToGlovebox(plate, toSlot, fromSlot, itemInfo["name"], fromAmount, fromItemData.info, itemInfo["created"])
 			end
 		else
-            QBCore.Functions.Notify(src, Lang:t("notify.itemexist"), "error")
+            QBCore.Functions.Notify(src, "Item doesn\'t exist", 'error')
 		end
 	elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "stash" then
 		local stashId = QBCore.Shared.SplitStr(fromInventory, "-")[2]
@@ -2033,7 +2033,7 @@ RegisterNetEvent('ps-inventory:server:SetInventoryData', function(fromInventory,
                 AddToStash(stashId, toSlot, fromSlot, itemInfo["name"], fromAmount, fromItemData.info, itemInfo["created"])
 			end
 		else
-            QBCore.Functions.Notify(src, Lang:t("notify.itemexist"), "error")
+            QBCore.Functions.Notify(src, "Item doesn\'t exist", 'error')
 		end
 	elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "traphouse" then
 		local traphouseId = QBCore.Shared.SplitStr(fromInventory, "_")[2]
