@@ -982,6 +982,37 @@ local function CreateNewDrop(source, fromSlot, toSlot, itemAmount, created)
 end
 
 local function OpenInventory(name, id, other, origin)
+
+    -- New QB compatibility
+    -- QB now calls this like (src, name, ...)
+    -- Setup parameters below if name is of type number to represent a source id
+    if type(name) == "number" then
+        origin = name -- Source was passed as p1
+        name = id -- Name was passed as p2
+        id = name -- Name will be the same as id, but more processing below
+
+        -- Check the name for the type, if it's not there, default to stash
+        if name:find('stash') then
+            name = 'stash'
+        elseif name:find('trunk') then
+            name = 'trunk'
+        elseif name:find('glovebox') then
+            name = 'glovebox'
+        elseif name:find('shop') then
+            name = 'shop'
+        elseif name:find('traphouse') then
+            name = 'traphouse'
+        elseif name:find('crafting') then
+            name = 'crafting'
+        elseif name:find('attachment_crafting') then
+            name = 'attachment_crafting'
+        elseif name:find('otherplayer') then
+            name = 'otherplayer'
+        else
+            name = 'stash' 
+        end
+    end
+
 	local src = origin
 	local ply = Player(src)
     local Player = QBCore.Functions.GetPlayer(src)
