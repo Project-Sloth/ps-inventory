@@ -1800,7 +1800,8 @@ RegisterNetEvent('ps-inventory:server:SetInventoryData', function(fromInventory,
 				local itemInfo = QBCore.Shared.Items[fromItemData.name:lower()]
                 AddToGlovebox(plate, toSlot, fromSlot, itemInfo["name"], fromAmount, fromItemData.info, itemInfo["created"])
 			elseif QBCore.Shared.SplitStr(toInventory, "-")[1] == "stash" then
-				local stashId = QBCore.Shared.SplitStr(toInventory, "-")[2]
+				local parts = QBCore.Shared.SplitStr(toInventory, "-")
+				local stashId = table.concat(parts, "-", 2)
 				local toItemData = Stashes[stashId].items[toSlot]
 				RemoveItem(src, fromItemData.name, fromAmount, fromSlot)
 				TriggerClientEvent("ps-inventory:client:CheckWeapon", src, fromItemData.name)
@@ -2636,8 +2637,9 @@ QBCore.Functions.CreateCallback('ps-inventory:server:ConvertQuality', function(s
         end
     end
     if other then
-		local inventoryType = QBCore.Shared.SplitStr(other.name, "-")[1]
-		local uniqueId = QBCore.Shared.SplitStr(other.name, "-")[2]
+		local parts = QBCore.Shared.SplitStr(other.name, "-")
+		local inventoryType = parts[1]
+		local uniqueId = table.concat(parts, "-", 2)
 		if inventoryType == "trunk" then
 			for _, item in pairs(other.inventory) do
 				if item.created then
