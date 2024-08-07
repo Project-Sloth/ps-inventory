@@ -981,17 +981,6 @@ local function CreateNewDrop(source, fromSlot, toSlot, itemAmount, created)
 	end
 end
 
-local function OpenInventoryById(source, targetId)
-    local QBPlayer = QBCore.Functions.GetPlayer(source)
-    local TargetPlayer = QBCore.Functions.GetPlayer(tonumber(targetId))
-    if not QBPlayer or not TargetPlayer then return end
-    if Player(targetId).state.inv_busy then TriggerClientEvent("ps-inventory:client:closeinv", targetId) end
-    Wait(1500)
-    Player(targetId).state.inv_busy = true
-    OpenInventory("otherplayer", targetId, nil, source)
-end
-
-exports('OpenInventoryById', OpenInventoryById)
 
 local function OpenInventory(name, id, other, origin)
 
@@ -1238,6 +1227,17 @@ local function OpenInventory(name, id, other, origin)
 end
 exports('OpenInventory',OpenInventory)
 
+local function OpenInventoryById(source, targetId)
+    local QBPlayer = QBCore.Functions.GetPlayer(source)
+    local TargetPlayer = QBCore.Functions.GetPlayer(tonumber(targetId))
+    if not QBPlayer or not TargetPlayer then return end
+    if Player(targetId).state.inv_busy then TriggerClientEvent("ps-inventory:client:closeinv", targetId) end
+    Wait(1500)
+    Player(targetId).state.inv_busy = true
+    OpenInventory("otherplayer", targetId, nil, source)
+end
+
+exports('OpenInventoryById', OpenInventoryById)
 -- Events
 
 AddEventHandler('QBCore:Server:PlayerLoaded', function(Player)
