@@ -703,10 +703,10 @@ local function AddToTrunk(plate, slot, fromslot, itemName, amount, info, created
     itemInfo['created'] = created or time
 	local ItemData = QBCore.Shared.Items[itemName]
 
-	if not ItemData.unique then -- if not unique
+	if not ItemData.unique then
 		if Trunks[plate].items[slot] and Trunks[plate].items[slot].name == itemName then -- if already occupied, add amount
 			Trunks[plate].items[slot].amount = Trunks[plate].items[slot].amount + amount
-		else -- if not occupied, create new item
+		else
 			local itemInfo = QBCore.Shared.Items[itemName:lower()]
 			Trunks[plate].items[slot] = {
 				name = itemInfo["name"],
@@ -723,8 +723,8 @@ local function AddToTrunk(plate, slot, fromslot, itemName, amount, info, created
 				slot = slot,
 			}
 		end
-	else -- if item is unique
-		if Trunks[plate].items[slot] and Trunks[plate].items[slot].name == itemName then -- if occupied, return to original slot
+	else
+		if Trunks[plate].items[slot] and Trunks[plate].items[slot].name == itemName then
 			local itemInfo = QBCore.Shared.Items[itemName:lower()]
 			Trunks[plate].items[fromslot] = {
 				name = itemInfo["name"],
@@ -740,7 +740,7 @@ local function AddToTrunk(plate, slot, fromslot, itemName, amount, info, created
 				created = created,
 				slot = fromslot,
 			}
-		else -- if free, add to slot
+		else
 			local itemInfo = QBCore.Shared.Items[itemName:lower()]
 			Trunks[plate].items[slot] = {
 				name = itemInfo["name"],
