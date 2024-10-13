@@ -681,7 +681,7 @@ local function FindEmptyTrunkSlot(items, vehicleName, vehicleClass)
     return nil
 end
 
-local function AddToTrunk(plate, slot, fromslot, itemName, amount, info, created, vehicleName, vehicleClass)
+local function AddToTrunk(plate, slot, otherslot, itemName, amount, info, created, vehicleName, vehicleClass)
 	if not Trunks[plate] then 
 		Trunks[plate] = {}
 		Trunks[plate].items = {}
@@ -726,7 +726,7 @@ local function AddToTrunk(plate, slot, fromslot, itemName, amount, info, created
 	else
 		if Trunks[plate].items[slot] and Trunks[plate].items[slot].name == itemName then
 			local itemInfo = QBCore.Shared.Items[itemName:lower()]
-			Trunks[plate].items[fromslot] = {
+			Trunks[plate].items[otherslot] = {
 				name = itemInfo["name"],
 				amount = amount,
 				info = info or "",
@@ -738,7 +738,7 @@ local function AddToTrunk(plate, slot, fromslot, itemName, amount, info, created
 				useable = itemInfo["useable"],
 				image = itemInfo["image"],
 				created = created,
-				slot = fromslot,
+				slot = otherslot,
 			}
 		else
 			local itemInfo = QBCore.Shared.Items[itemName:lower()]
