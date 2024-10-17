@@ -688,23 +688,20 @@ local function AddToTrunk(plate, slot, otherslot, itemName, amount, info, create
 		Trunks[plate].isOpen = false
 		Trunks[plate].label = "Trunk-" .. plate
 	end
-	if not slot then
-		slot = FindEmptyTrunkSlot(Trunks[plate].items, vehicleName, vehicleClass)
-	end
+	if not slot then slot = FindEmptyTrunkSlot(Trunks[plate].items, vehicleName, vehicleClass) end
 	amount = tonumber(amount) or 1
 	local itemInfo = QBCore.Shared.Items[itemName:lower()]
 	local time = os.time()
-    if not created then
-        itemInfo['created'] = os.time()
-    else
-        itemInfo['created'] = created
-    end
+ if not created then 
+			itemInfo['created'] = time
+	else 
+			itemInfo['created'] = created
+ end
 	info = info or {}
-    itemInfo['created'] = created or time
 	local ItemData = QBCore.Shared.Items[itemName]
 
 	if not ItemData.unique then
-		if Trunks[plate].items[slot] and Trunks[plate].items[slot].name == itemName then -- if already occupied, add amount
+		if Trunks[plate].items[slot] and Trunks[plate].items[slot].name == itemName then 
 			Trunks[plate].items[slot].amount = Trunks[plate].items[slot].amount + amount
 		else
 			local itemInfo = QBCore.Shared.Items[itemName:lower()]
