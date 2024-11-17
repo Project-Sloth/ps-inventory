@@ -15,6 +15,14 @@ local isHotbar = false
 local WeaponAttachments = {}
 local showBlur = true
 
+local function Notify(text, type) 
+    if Config.Notify =='ox' then
+        lib.notify({title = text, type = type})
+    elseif Config.Notify == 'qb' then
+        QBCore.Functions.Notify(text, type)
+    end
+end
+
 local function HasItem(items, amount)
     local isTable = type(items) == 'table'
     local isArray = isTable and table.type(items) == 'array' or false
@@ -538,7 +546,7 @@ RegisterNetEvent('ps-inventory:client:CraftItems', function(itemName, itemCosts,
         isCrafting = false
 	end, function() -- Cancel
 		StopAnimTask(ped, "mini@repair", "fixing_a_player", 1.0)
-        QBCore.Functions.Notify("Failed", "error")
+        Notify("Failed", "error")
         isCrafting = false
 	end)
 end)
@@ -565,7 +573,7 @@ RegisterNetEvent('ps-inventory:client:CraftAttachment', function(itemName, itemC
         isCrafting = false
 	end, function() -- Cancel
 		StopAnimTask(ped, "mini@repair", "fixing_a_player", 1.0)
-        QBCore.Functions.Notify("Failed", "error")
+        Notify("Failed", "error")
         isCrafting = false
 	end)
 end)
@@ -585,7 +593,7 @@ RegisterNetEvent('ps-inventory:client:PickupSnowballs', function()
         TriggerEvent('ps-inventory:client:ItemBox', QBCore.Shared.Items["snowball"], "add")
     end, function() -- Cancel
         ClearPedTasks(ped)
-        QBCore.Functions.Notify("Canceled", "error")
+        Notify("Canceled", "error")
     end)
 end)
 
@@ -741,7 +749,7 @@ RegisterCommand('inventory', function()
                             curVeh = vehicle
                             CurrentGlovebox = nil
                         else
-                            QBCore.Functions.Notify("Vehicle locked.", "error")
+                            Notify("Vehicle locked.", "error")
                             return
                         end
                     else
@@ -829,7 +837,7 @@ RegisterNUICallback('RobMoney', function(data, cb)
 end)
 
 RegisterNUICallback('Notify', function(data, cb)
-    QBCore.Functions.Notify(data.message, data.type)
+    Notify(data.message, data.type)
     cb('ok')
 end)
 
@@ -937,7 +945,7 @@ RegisterNUICallback('combineWithAnim', function(data, cb)
         TriggerServerEvent('ps-inventory:server:combineItem', combineData.reward, data.requiredItem, data.usedItem)
     end, function() -- Cancel
         StopAnimTask(ped, aDict, aLib, 1.0)
-        QBCore.Functions.Notify("Failed", "error")
+        Notify("Failed", "error")
     end)
     cb('ok')
 end)
@@ -965,10 +973,10 @@ RegisterNUICallback("GiveItem", function(data, cb)
             SetCurrentPedWeapon(PlayerPedId(),'WEAPON_UNARMED',true)
             TriggerServerEvent("ps-inventory:server:GiveItem", playerId, data.item.name, data.amount, data.item.slot)
         else
-            QBCore.Functions.Notify("You do not own this item!", "error")
+            Notify("You do not own this item!", "error")
         end
     else
-        QBCore.Functions.Notify("No one nearby!", "error")
+        Notify("No one nearby!", "error")
     end
     cb('ok')
 end)
