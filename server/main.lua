@@ -993,7 +993,6 @@ end
 
 
 local function OpenInventory(name, id, other, origin)
-	print('OpenInventory', name, id, other, origin)
     -- New QB compatibility
     -- QB now calls this like (src, name, ...)
     -- Setup parameters below if name is of type number to represent a source id
