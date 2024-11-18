@@ -16,7 +16,7 @@ function Notify(source, text, type)
     elseif Config.Notify == 'ox' then
         lib.notify(src, { title = text, type = type})
     else
-        print"^1 SCRIPT ERROR: ps-hud Invalid Option For Config.Notify"
+        print"^1 SCRIPT ERROR: ps-inventory Invalid Option For Config.Notify"
     end
 end
 ---Loads the inventory for the player with the citizenid that is provided
