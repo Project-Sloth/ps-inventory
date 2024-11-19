@@ -534,6 +534,8 @@ local function GetStashItems(stashId)
 	return items
 end
 
+exports('GetStashItems', GetStashItems)
+
 local function SaveStashItems(stashId, items)
 	if Stashes[stashId].label == "Stash-None" or not items then return end
 
