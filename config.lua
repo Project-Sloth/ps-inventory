@@ -390,80 +390,37 @@ Config.VehicleInventories = {
         weight = 60000,
         slots = 35,
     },
-    classes = { -- This is the inventory for each class of vehicle
-        [0] = {
-            maxWeight = 38000,
-            slots = 30,
-        },
-        [1] = {
-            maxWeight = 50000,
-            slots = 40,
-        },
-        [2] = {
-            maxWeight = 75000,
-            slots = 50,
-        },
-        [3] = {
-            maxWeight = 42000,
-            slots = 35,
-        },
-        [4] = {
-            maxWeight = 38000,
-            slots = 30,
-        },
-        [5] = {
-            maxWeight = 30000,
-            slots = 25,
-        },
-        [6] = {
-            maxWeight = 30000,
-            slots = 25,
-        },
-        [7] = {
-            maxWeight = 30000,
-            slots = 25,
-        },
-        [8] = {
-            maxWeight = 15000,
-            slots = 15,
-        },
-        [9] = {
-            maxWeight = 60000,
-            slots = 35,
-        },
-        [12] = {
-            maxWeight = 120000,
-            slots = 35,
-        },
-        [13] = {
-            maxWeight = 0,
-            slots = 0,
-        },
-        [14] = {
-            maxWeight = 120000,
-            slots = 50,
-        },
-        [15] = {
-            maxWeight = 120000,
-            slots = 50,
-        },
-        [16] = {
-            maxWeight = 120000,
-            slots = 50,
-        }
+    classes =  { -- This is the inventory for each class of vehicle
+        [0] =  { maxWeight = 38000,  slots = 30, },
+        [1] =  { maxWeight = 50000,  slots = 40, },
+        [2] =  { maxWeight = 75000,  slots = 50, },
+        [3] =  { maxWeight = 42000,  slots = 35, },
+        [4] =  { maxWeight = 38000,  slots = 30, },
+        [5] =  { maxWeight = 30000,  slots = 25, },
+        [6] =  { maxWeight = 30000,  slots = 25, },
+        [7] =  { maxWeight = 30000,  slots = 25, },
+        [8] =  { maxWeight = 15000,  slots = 15, },
+        [9] =  { maxWeight = 60000,  slots = 35, },
+        [10] = { maxWeight = 60000,  slots = 35, },
+        [11] = { maxWeight = 120000, slots = 50, },
+        [12] = { maxWeight = 120000, slots = 35, },
+        [13] = { maxWeight = 0,      slots = 0,  },
+        [14] = { maxWeight = 120000, slots = 50, },
+        [15] = { maxWeight = 120000, slots = 50, },
+        [16] = { maxWeight = 120000, slots = 50, },
+        [17] = { maxWeight = 120000, slots = 50, },
+        [18] = { maxWeight = 120000, slots = 50, },
+        [19] = { maxWeight = 120000, slots = 50, },
+        [20] = { maxWeight = 120000, slots = 50, },
+        [21] = { maxWeight = 120000, slots = 50, },
+        [22] = { maxWeight = 120000, slots = 50, }
     },
     vehicles = { -- This is the inventory for each vehicle individually
-        ["rumpo"] = {
-            maxWeight = 80000,
-            slots = 40,
+        ["rumpo"] = { maxWeight = 80000, slots = 40,
         },
-        ["sultan"] = {
-            maxWeight = 30000,
-            slots = 15
+        ["sultan"] = { maxWeight = 30000, slots = 15
         },
-        ["baller"] = {
-            maxWeight = 50000,
-            slots = 25
+        ["baller"] = { maxWeight = 50000, slots = 25
         }
     }
 }
