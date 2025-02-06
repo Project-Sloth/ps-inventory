@@ -637,6 +637,15 @@ function FormatItemInfo(itemData, dom) {
                 itemData.info.cash +
                 "</span></p><p style=\"font-size:11px\"><b>Weight: </b>" + itemData.weight + " | <b>Amount: </b> " + itemData.amount + " | <b>Quality: </b> " + "<a style=\"font-size:11px;color:green\">" + Math.floor(itemData.info.quality) + "</a>"
             );
+        } else if (itemData.name == "mdtcitation") {
+            $(".item-info-title").html("<p>" + itemData.label + "</p>");
+            $(".item-info-description").html(
+                '<p><strong>Citizen ID: </strong><span>' + itemData.info.citizenId + '</span></p>' +
+                '<p><strong>Fine: </strong><span>' + itemData.info.fine + '</span></p>' +
+                '<p><strong>Citation Date: </strong><span>' + itemData.info.date + '</span></p>' +
+                '<p><strong>Incident ID: </strong><span>' + itemData.info.incidentId + '</span></p>' +
+                '<p><strong>Involved Officer: </strong><span>' + itemData.info.officer + '</span></p>'
+            );
         } else if (itemData.name == "markedbills") {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             $(".item-info-description").html(
