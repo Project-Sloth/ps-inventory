@@ -408,6 +408,16 @@ RegisterNetEvent('ps-inventory:client:CheckOpenState', function(type, id, label)
 end)
 
 RegisterNetEvent('ps-inventory:client:ItemBox', function(itemData, type, amount)
+    --amount = amount or 1
+    --SendNUIMessage({
+    --    action = "itemBox",
+    --    item = itemData,
+    --    type = type,
+    --    itemAmount = amount
+    --})
+end)
+
+RegisterNetEvent('ps-inventory:client:ItemBox2', function(itemData, type, amount)
     amount = amount or 1
     SendNUIMessage({
         action = "itemBox",
