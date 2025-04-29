@@ -157,7 +157,7 @@ local function AddItem(source, item, amount, slot, info, reason, created)
 	local itemInfo = QBCore.Shared.Items[item:lower()]
 	local time = os.time()
 	if not itemInfo and not Player.Offline then
-		Notify(source, "Item does not exist", 'error')
+		QBCore.Functions.Notify(source, "Item does not exist", 'error')
 		return false
 	end
 
@@ -178,6 +178,7 @@ local function AddItem(source, item, amount, slot, info, reason, created)
 			Player.PlayerData.items[slot].amount = Player.PlayerData.items[slot].amount + amount
 			Player.Functions.SetPlayerData("items", Player.PlayerData.items)
 			if Player.Offline then return true end
+			TriggerClientEvent('ps-inventory:client:ItemBox2', source, QBCore.Shared.Items[item], "add", amount)
 			TriggerEvent('qb-log:server:CreateLog', 'playerinventory', 'AddItem', 'green', '**' .. GetPlayerName(source) .. ' (citizenid: ' .. Player.PlayerData.citizenid .. ' | id: ' .. source .. ')** got item: [slot:' .. slot .. '], itemname: ' .. Player.PlayerData.items[slot].name .. ', added amount: ' .. amount .. ', new total amount: ' .. Player.PlayerData.items[slot].amount)
 			return true
 			else
@@ -196,7 +197,7 @@ local function AddItem(source, item, amount, slot, info, reason, created)
 			Player.Functions.SetPlayerData("items", Player.PlayerData.items)
 
 			if Player.Offline then return true end
-
+			TriggerClientEvent('ps-inventory:client:ItemBox2', source, QBCore.Shared.Items[item], "add", amount)
 			TriggerEvent('qb-log:server:CreateLog', 'playerinventory', 'AddItem', 'green', '**' .. GetPlayerName(source) .. ' (citizenid: ' .. Player.PlayerData.citizenid .. ' | id: ' .. source .. ')** got item: [slot:' .. slot .. '], itemname: ' .. Player.PlayerData.items[slot].name .. ', added amount: ' .. amount .. ', new total amount: ' .. Player.PlayerData.items[slot].amount)
 
 			return true
@@ -207,7 +208,7 @@ local function AddItem(source, item, amount, slot, info, reason, created)
 					Player.Functions.SetPlayerData("items", Player.PlayerData.items)
 
 					if Player.Offline then return true end
-
+					TriggerClientEvent('ps-inventory:client:ItemBox2', source, QBCore.Shared.Items[item], "add", amount)
 					TriggerEvent('qb-log:server:CreateLog', 'playerinventory', 'AddItem', 'green', '**' .. GetPlayerName(source) .. ' (citizenid: ' .. Player.PlayerData.citizenid .. ' | id: ' .. source .. ')** got item: [slot:' .. i .. '], itemname: ' .. Player.PlayerData.items[i].name .. ', added amount: ' .. amount .. ', new total amount: ' .. Player.PlayerData.items[i].amount)
 
 					return true
@@ -215,7 +216,7 @@ local function AddItem(source, item, amount, slot, info, reason, created)
 			end
 		end
 	elseif not Player.Offline then
-		Notify(source, "Inventory too full", 'error')
+		QBCore.Functions.Notify(source, "Inventory too full", 'error')
 	end
 	return false
 end
@@ -240,14 +241,14 @@ local function RemoveItem(source, item, amount, slot)
 			if not Player.Offline then
 				TriggerEvent('qb-log:server:CreateLog', 'playerinventory', 'RemoveItem', 'red', '**' .. GetPlayerName(source) .. ' (citizenid: ' .. Player.PlayerData.citizenid .. ' | id: ' .. source .. ')** lost item: [slot:' .. slot .. '], itemname: ' .. Player.PlayerData.items[slot].name .. ', removed amount: ' .. amount .. ', new total amount: ' .. Player.PlayerData.items[slot].amount)
 			end
-
+			TriggerClientEvent('ps-inventory:client:ItemBox2', source, QBCore.Shared.Items[item], "remove", amount)
 			return true
 		elseif Player.PlayerData.items[slot].amount == amount then
 			Player.PlayerData.items[slot] = nil
 			Player.Functions.SetPlayerData("items", Player.PlayerData.items)
 
 			if Player.Offline then return true end
-
+			TriggerClientEvent('ps-inventory:client:ItemBox2', source, QBCore.Shared.Items[item], "remove", amount)
 			TriggerEvent('qb-log:server:CreateLog', 'playerinventory', 'RemoveItem', 'red', '**' .. GetPlayerName(source) .. ' (citizenid: ' .. Player.PlayerData.citizenid .. ' | id: ' .. source .. ')** lost item: [slot:' .. slot .. '], itemname: ' .. item .. ', removed amount: ' .. amount .. ', item removed')
 
 			return true
@@ -262,7 +263,7 @@ local function RemoveItem(source, item, amount, slot)
 			if Player.PlayerData.items[_slot].amount > amountToRemove then
 				Player.PlayerData.items[_slot].amount = Player.PlayerData.items[_slot].amount - amountToRemove
 				Player.Functions.SetPlayerData("items", Player.PlayerData.items)
-
+				TriggerClientEvent('ps-inventory:client:ItemBox2', source, QBCore.Shared.Items[item], "remove", amount)
 				if not Player.Offline then
 					TriggerEvent('qb-log:server:CreateLog', 'playerinventory', 'RemoveItem', 'red', '**' .. GetPlayerName(source) .. ' (citizenid: ' .. Player.PlayerData.citizenid .. ' | id: ' .. source .. ')** lost item: [slot:' .. _slot .. '], itemname: ' .. Player.PlayerData.items[_slot].name .. ', removed amount: ' .. amount .. ', new total amount: ' .. Player.PlayerData.items[_slot].amount)
 				end
@@ -273,7 +274,7 @@ local function RemoveItem(source, item, amount, slot)
 				Player.Functions.SetPlayerData("items", Player.PlayerData.items)
 
 				if Player.Offline then return true end
-
+				TriggerClientEvent('ps-inventory:client:ItemBox2', source, QBCore.Shared.Items[item], "remove", amount)
 				TriggerEvent('qb-log:server:CreateLog', 'playerinventory', 'RemoveItem', 'red', '**' .. GetPlayerName(source) .. ' (citizenid: ' .. Player.PlayerData.citizenid .. ' | id: ' .. source .. ')** lost item: [slot:' .. _slot .. '], itemname: ' .. item .. ', removed amount: ' .. amount .. ', item removed')
 
 				return true
