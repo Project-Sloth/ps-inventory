@@ -450,12 +450,15 @@ exports("GetUsableItem", GetUsableItem)
 ---@param itemName string The name of the item to use
 ---@param ... any Arguments for the callback, this will be sent to the callback and can be used to get certain values
 local function UseItem(itemName, ...)
-	local itemData = GetUsableItem(itemName)
-	local callback = type(itemData) == 'table' and (rawget(itemData, '__cfx_functionReference') and itemData or itemData.cb or itemData.callback) or type(itemData) == 'function' and itemData
-	if not callback then return end
-	callback(...)
+    local itemData = GetUsableItem(itemName)
+    if type(itemData) ~= "table" then
+        return false
+    end
+    if not itemData.func then
+        return false
+    end
+    itemData.func(...)
 end
-
 exports("UseItem", UseItem)
 
 local function recipeContains(recipe, fromItem)
