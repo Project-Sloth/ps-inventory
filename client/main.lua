@@ -34,7 +34,7 @@ local function HasItem(items, amount)
         for _ in pairs(items) do totalItems += 1 end
         kvIndex = 1
     end
-    if next(PlayerData.items) then
+    if next(PlayerData.items) and PlayerData.items ~= nil then
         for _, itemData in pairs(PlayerData.items) do
             if isTable then
                 for k, v in pairs(items) do
