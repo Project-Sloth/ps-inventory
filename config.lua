@@ -10,10 +10,16 @@ Config.MaxDropViewDistance = 12.5 -- The distance in GTA Units that a drop can b
 Config.UseItemDrop = false -- This will enable item object to spawn on drops instead of markers
 Config.ItemDropObject = `sf_prop_sf_backpack_01a` -- if Config.UseItemDrop is true, this will be the prop that spawns for the item
 
+Config.Notify = 'qb' -- Notifications for either qb/ox
 Config.Progressbar = {
     Enable = false,         -- True to Enable the progressbar while opening inventory
     minT = 350,             -- Min Time for Inventory to open
     maxT = 500              -- Max Time for Inventory to open
+}
+
+Config.Lang = {
+    noaccess = "You Can Not Access This Inventory!",
+    itemexist = "This Item Does Not Exist",
 }
 
 Config.VendingObjects = {

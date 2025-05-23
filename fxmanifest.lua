@@ -6,7 +6,8 @@ version '1.0.6'
 
 shared_scripts {
 	'config.lua',
-	'@qb-weapons/config.lua'
+	'@qb-weapons/config.lua',
+	'@ox_lib/init.lua',
 }
 
 server_scripts {
