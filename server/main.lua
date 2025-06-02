@@ -451,14 +451,10 @@ exports("GetUsableItem", GetUsableItem)
 ---@param itemName string The name of the item to use
 ---@param ... any Arguments for the callback, this will be sent to the callback and can be used to get certain values
 local function UseItem(itemName, ...)
-    local itemData = GetUsableItem(itemName)
-    if type(itemData) ~= "table" then
-        return false
+    local itemData = QBCore.Functions.CanUseItem(itemName)
+    if type(itemData) == 'table' and itemData.func then
+        itemData.func(...)
     end
-    if not itemData.func then
-        return false
-    end
-    itemData.func(...)
 end
 exports("UseItem", UseItem)
 
