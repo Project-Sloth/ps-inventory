@@ -1260,6 +1260,22 @@ body {
         border-radius: 9px;
         opacity: 90%;
     }
+    .itemboxes-container {
+        height: 10.5rem;
+        min-width: 90rem;
+        max-width: 90rem;
+        width: fit-content;
+        position: absolute;
+        left: 47%;
+        bottom: 18%;
+        overflow: hidden;
+    }
+    #itembox-label {
+        position: absolute;
+        bottom: -20;
+        width: 100%;
+        height: 5%;
+    }
 }
 
 @media (width: 3360px) and (height: 1440px) {
