@@ -680,12 +680,36 @@ local function SaveOwnedVehicleItems(plate, items)
 	Trunks[plate].isOpen = false
 end
 
-local function AddToTrunk(plate, slot, otherslot, itemName, amount, info, created)
+local function FindEmptyTrunkSlot(items, vehicleName, vehicleClass)
+	local slots = Config.VehicleInventories.vehicles[vehicleName] or Config.VehicleInventories.classes[vehicleClass] or Config.VehicleInventories.default
+    for i = 1, slots.slots do
+        if items[i] == nil then
+            return i
+        end
+    end
+    return nil
+end
+
+local function AddToTrunk(plate, slot, otherslot, itemName, amount, info, created, vehicleName, vehicleClass)
+	if not Trunks[plate] then 
+		Trunks[plate] = {}
+		Trunks[plate].items = {}
+		Trunks[plate].isOpen = false
+		Trunks[plate].label = "Trunk-" .. plate
+	end
+	
+	if not slot then slot = FindEmptyTrunkSlot(Trunks[plate].items, vehicleName, vehicleClass) end
 	amount = tonumber(amount) or 1
+	
+	local itemInfo = QBCore.Shared.Items[itemName:lower()]
+	local time = os.time()
+	itemInfo['created'] = created or time
+	
+ info = info or {}
 	local ItemData = QBCore.Shared.Items[itemName]
 
 	if not ItemData.unique then
-		if Trunks[plate].items[slot] and Trunks[plate].items[slot].name == itemName then
+		if Trunks[plate].items[slot] and Trunks[plate].items[slot].name == itemName then 
 			Trunks[plate].items[slot].amount = Trunks[plate].items[slot].amount + amount
 		else
 			local itemInfo = QBCore.Shared.Items[itemName:lower()]
@@ -741,6 +765,8 @@ local function AddToTrunk(plate, slot, otherslot, itemName, amount, info, create
 	end
 end
 
+exports("AddToTrunk", AddToTrunk)
+
 local function RemoveFromTrunk(plate, slot, itemName, amount)
 	amount = tonumber(amount) or 1
 	if Trunks[plate].items[slot] and Trunks[plate].items[slot].name == itemName then
@@ -757,6 +783,7 @@ local function RemoveFromTrunk(plate, slot, itemName, amount)
 	end
 end
 
+exports("RemoveFromTrunk", RemoveFromTrunk)
 
 -- Glovebox items
 local function GetOwnedVehicleGloveboxItems(plate)
