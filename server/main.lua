@@ -488,11 +488,13 @@ end
 -- Shop Items
 local function SetupShopItems(shopItems)
 	local items = {}
+	local itemSlot = 0
 	if shopItems and next(shopItems) then
 		for _, item in pairs(shopItems) do
 			local itemInfo = QBCore.Shared.Items[item.name:lower()]
 			if itemInfo then
-				items[item.slot] = {
+				itemSlot = itemSlot +1
+				items[itemSlot] = {
 					name = itemInfo["name"],
 					amount = tonumber(item.amount),
 					info = item.info or "",
@@ -504,7 +506,7 @@ local function SetupShopItems(shopItems)
 					useable = itemInfo["useable"],
 					price = item.price,
 					image = itemInfo["image"],
-					slot = item.slot,
+					slot = itemSlot,
 				}
 			end
 		end
